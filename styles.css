@@ -44,7 +44,6 @@ p{margin-bottom:14px;color:var(--muted)}
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:var(--navy)}
 .brand-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem}
-.brand-logo{width:56px;height:56px;border-radius:14px;object-fit:contain;background:#0b0b0b;padding:4px}
 .brand small{display:block;font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.06em}
 .main-nav{display:flex;align-items:center;gap:4px}
 .main-nav a{color:var(--ink);font-weight:600;font-size:.95rem;padding:10px 13px;border-radius:8px}
@@ -67,6 +66,7 @@ p{margin-bottom:14px;color:var(--muted)}
 
 /* Hero */
 .hero{background:radial-gradient(1100px 500px at 85% -10%,rgba(23,115,196,.45),transparent 60%),radial-gradient(900px 480px at -10% 110%,rgba(217,164,65,.22),transparent 55%),linear-gradient(160deg,var(--navy-deep),var(--navy) 60%,#0e3a66);color:#fff;padding:88px 0 96px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:560px;height:560px;background:url('/images/logo-icon.png') center/contain no-repeat;opacity:.08;pointer-events:none}
 .hero h1{color:#fff;margin-bottom:16px}
 .hero p{color:#c4d4e4;font-size:1.12rem;max-width:640px}
 .hero .hero-sub{color:var(--gold);font-weight:700;letter-spacing:.02em}
