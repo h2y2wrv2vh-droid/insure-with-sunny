@@ -427,10 +427,60 @@
   if(f){f.addEventListener('submit',function(e){
     e.preventDefault();
     var g=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
-    var subject='Quote Request, '+g('qType')+', '+g('qName');
-    var body='Name: '+g('qName')+'\nPhone: '+g('qPhone')+'\nEmail: '+g('qEmail')+'\nInsurance needed: '+g('qType')+'\n\nDetails:\n'+g('qMsg');
-    window.location.href='mailto:sunny.grewal@aaxelinsurance.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    var btn=f.querySelector('button[type="submit"]');
+    var originalText=btn.textContent;
+    btn.textContent='Sending...';btn.disabled=true;
+    fetch('https://script.google.com/macros/s/AKfycbxEAuVTYPyy_OaRx2GzJv-KdGnxaH4asdpq6gX3IJ3IbWPbHRGHECUtGWiLbSNiaR4S3Q/exec',{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:g('qName'),
+        phone:g('qPhone'),
+        email:g('qEmail'),
+        type:g('qType'),
+        message:g('qMsg')
+      })
+    }).then(function(){
+      f.reset();
+      showStatus('Thank you! Your quote request has been sent. We usually respond the same business day.',true);
+    }).catch(function(){
+      showStatus('Something went wrong. Please call us at 416-606-5979 or email sunny.grewal@aaxelinsurance.com.',false);
+    }).finally(function(){
+      btn.textContent=originalText;btn.disabled=false;
+    });
+    function showStatus(msg,ok){
+      var el=document.getElementById('quoteStatus');
+      if(!el){
+        el=document.createElement('p');el.id='quoteStatus';
+        el.style.cssText='margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.92rem;';
+        f.appendChild(el);
+      }
+      el.textContent=msg;
+      el.style.display='block';
+      el.style.background=ok?'#e6f4ea':'#fce8e6';
+      el.style.color=ok?'#1a5c2e':'#a50e0e';
+      el.style.border='1px solid '+(ok?'#b7e0c3':'#f5c6c2');
+    }
   });}
+  /* Scroll reveals */
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.grid').forEach(function(grid){
+      grid.querySelectorAll('.card,.testimonial,.stat').forEach(function(el,i){
+        el.classList.add('reveal');
+        el.style.transitionDelay=Math.min(i*70,350)+'ms';
+        io.observe(el);
+      });
+    });
+    document.querySelectorAll('section .center, .split > *').forEach(function(el){
+      el.classList.add('reveal');io.observe(el);
+    });
+  }
 })();
 </script>
 </body>
