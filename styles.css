@@ -357,3 +357,19 @@ footer.site-footer{background:var(--navy-deep);color:#a9bdcf;padding:56px 0 0;ma
 .hb-logo img{width:217px;left:-31px;top:-39px}
 .headshot-banner .hb-name{font-size:.88rem;white-space:normal}
 }
+
+/* Insurance Insights */
+.article-date{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.article-body{font-size:1.05rem;line-height:1.75}
+.article-body h2{margin:32px 0 12px;font-size:1.45rem}
+.article-body p{margin-bottom:18px}
+.takeaways{background:var(--blue-soft);border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:22px 26px;margin:28px 0}
+.takeaways h3{margin-bottom:10px}
+.takeaways ul{margin:0;padding-left:20px}
+.takeaways li{margin-bottom:8px}
+.article-sources{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:.92rem}
+.article-sources h3{font-size:1rem;margin-bottom:8px}
+.article-sources ul{padding-left:20px}
+.article-sources li{margin-bottom:6px}
+.author-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;margin-top:28px;box-shadow:var(--shadow)}
+.author-box span{color:var(--muted);font-size:.92rem}
