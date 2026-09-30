@@ -130,13 +130,48 @@
     </button>
     <nav class="main-nav" id="mainNav" aria-label="Primary">
       <button class="nav-close" id="navClose" aria-label="Close menu">&times;</button>
-      <a href="/">Home</a>
-      <a href="/auto-insurance/">Auto</a>
+    <a href="/">Home</a>
+    <div class="nav-drop">
+      <a href="/auto-insurance/" class="">Auto</a>
+      <button class="nav-chev" aria-expanded="false" aria-label="Auto submenu">&#9662;</button>
+      <div class="nav-menu">
+      <a href="/auto-insurance/">Personal Auto</a>
+      <a href="/commercial-auto/">Commercial Auto &amp; Trucking</a>
+      <a href="/motorcycle-insurance/">Motorcycle</a>
+      </div>
+    </div>
+    <div class="nav-drop">
+      <a href="/home-insurance/" class="">Home Insurance</a>
+      <button class="nav-chev" aria-expanded="false" aria-label="Home insurance submenu">&#9662;</button>
+      <div class="nav-menu">
       <a href="/home-insurance/">Home Insurance</a>
-      <a href="/business-insurance/">Business</a>
-      <a href="/travel-insurance/">Travel</a>
-      <a href="/about/">About</a>
-      <a href="/contact/" class="active">Contact</a>
+      <a href="/condo-insurance/">Condo Insurance</a>
+      <a href="/renters-insurance/">Renters Insurance</a>
+      </div>
+    </div>
+    <div class="nav-drop">
+      <a href="/business-insurance/" class="">Business</a>
+      <button class="nav-chev" aria-expanded="false" aria-label="Business submenu">&#9662;</button>
+      <div class="nav-menu">
+      <a href="/business-insurance/">Business Insurance</a>
+      <a href="/commercial-auto/">Commercial Auto &amp; Trucking</a>
+      </div>
+    </div>
+    <div class="nav-drop">
+      <a href="/gta/" class="">Locations</a>
+      <button class="nav-chev" aria-expanded="false" aria-label="Locations submenu">&#9662;</button>
+      <div class="nav-menu">
+      <a href="/toronto/">Toronto</a>
+      <a href="/mississauga/">Mississauga</a>
+      <a href="/brampton/">Brampton</a>
+      <a href="/vaughan/">Vaughan</a>
+      <a href="/markham/">Markham</a>
+      <a href="/gta/">Greater Toronto Area</a>
+      </div>
+    </div>
+    <a href="/travel-insurance/">Travel</a>
+    <a href="/about/">About</a>
+    <a href="/contact/" class="active">Contact</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-gold btn-sm" href="/contact/">Get a Quote</a>
@@ -346,6 +381,33 @@
     },{passive:true});
     b.addEventListener('click',function(){
       window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    });
+  })();
+
+  /* Dropdown submenus (touch + keyboard support) */
+  (function(){
+    function closeAll(){
+      document.querySelectorAll('.nav-drop.open').forEach(function(d){
+        d.classList.remove('open');
+        var b=d.querySelector('.nav-chev');
+        if(b) b.setAttribute('aria-expanded','false');
+      });
+    }
+    document.querySelectorAll('.nav-chev').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var drop=btn.closest('.nav-drop');
+        var wasOpen=drop.classList.contains('open');
+        closeAll();
+        if(!wasOpen){drop.classList.add('open');btn.setAttribute('aria-expanded','true');}
+      });
+    });
+    document.addEventListener('click',function(e){
+      if(!e.target.closest('.nav-drop')) closeAll();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape') closeAll();
     });
   })();
 })();
