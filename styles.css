@@ -345,6 +345,7 @@ footer.site-footer{background:var(--navy-deep);color:#a9bdcf;padding:56px 0 0;ma
 }
 
 /* Headshot banner */
+/* headshot-banner v3: CSS-cropped logo, single row */
 .headshot-banner{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:14px;padding:40px 18px 16px;background:linear-gradient(to top,rgba(7,30,54,.94) 30%,transparent);border-radius:0 0 16px 16px}
 .hb-logo{width:220px;height:84px;overflow:hidden;flex-shrink:0;position:relative;display:block}
 .hb-logo img{position:absolute;width:319px;max-width:none;height:auto;left:-46px;top:-57px;display:block}
