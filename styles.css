@@ -45,14 +45,15 @@ p{margin-bottom:14px;color:var(--muted)}
 /* Header */
 .site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line)}
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:var(--navy)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:var(--navy);flex-shrink:0;white-space:nowrap}
 .brand-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem}
 .brand small{display:block;font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.06em}
-.main-nav{display:flex;align-items:center;gap:4px}
-.main-nav a{color:var(--ink);font-weight:600;font-size:.95rem;padding:10px 13px;border-radius:8px}
+.main-nav{display:flex;align-items:center;gap:2px;flex-shrink:1;min-width:0}
+.main-nav a{color:var(--ink);font-weight:600;font-size:.92rem;padding:10px 11px;border-radius:8px;white-space:nowrap}
 .main-nav a:hover{background:var(--blue-soft);color:var(--navy)}
 .main-nav a.active{background:var(--navy);color:#fff}
-.nav-cta{display:flex;align-items:center;gap:10px}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-cta .btn{white-space:nowrap}
 .btn{display:inline-block;padding:13px 26px;border-radius:10px;font-weight:800;font-size:.98rem;border:2px solid transparent;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;text-align:center}
 .btn:hover{transform:translateY(-2px)}
 .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 20px rgba(23,115,196,.28)}
@@ -129,10 +130,10 @@ p{margin-bottom:14px;color:var(--muted)}
 
 /* Dropdown nav */
 .nav-drop{position:relative;display:flex;align-items:center}
-.nav-drop>a{color:var(--ink);font-weight:600;font-size:.95rem;padding:10px 6px 10px 13px;border-radius:8px}
+.nav-drop>a{color:var(--ink);font-weight:600;font-size:.92rem;padding:10px 4px 10px 11px;border-radius:8px;white-space:nowrap}
 .nav-drop>a:hover{background:var(--blue-soft);color:var(--navy)}
 .nav-drop>a.active{background:var(--navy);color:#fff}
-.nav-chev{background:none;border:0;cursor:pointer;color:var(--muted);font-size:.72rem;padding:12px 13px 12px 5px;border-radius:8px;line-height:1;transition:transform .25s var(--ease)}
+.nav-chev{background:none;border:0;cursor:pointer;color:var(--muted);font-size:.72rem;padding:12px 10px 12px 3px;border-radius:8px;line-height:1;transition:transform .25s var(--ease)}
 .nav-drop:hover .nav-chev{transform:rotate(180deg)}
 .nav-menu{position:absolute;top:calc(100% + 8px);left:0;min-width:280px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px rgba(11,42,74,.18);padding:8px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;z-index:400}
 .nav-menu::before{content:"";position:absolute;top:-8px;left:0;right:0;height:8px}
@@ -167,7 +168,7 @@ p{margin-bottom:14px;color:var(--muted)}
 
 /* Micro-interactions: animated link underlines */
 .main-nav a{position:relative}
-.main-nav a::after{content:"";position:absolute;left:13px;right:13px;bottom:6px;height:2px;background:var(--gold);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.main-nav a::after{content:"";position:absolute;left:11px;right:11px;bottom:6px;height:2px;background:var(--gold);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .main-nav a:hover::after{transform:scaleX(1)}
 .main-nav a.active::after{transform:scaleX(1)}
 .card-link{position:relative}
@@ -257,10 +258,16 @@ footer.site-footer{background:var(--navy-deep);color:#a9bdcf;padding:56px 0 0;ma
 
 /* Roomier desktop nav at mid widths */
 @media(max-width:1180px){
-  .main-nav a{font-size:.88rem;padding:10px 9px}
-  .nav-drop>a{padding:10px 5px 10px 9px}
-  .nav-chev{padding:12px 9px 12px 4px}
+  .main-nav a{font-size:.88rem;padding:10px 8px}
+  .main-nav a::after{left:8px;right:8px}
+  .nav-drop>a{padding:10px 3px 10px 8px}
+  .nav-chev{padding:12px 8px 12px 2px}
   .nav-cta{gap:6px}
+  .nav-cta .btn{padding:9px 14px;font-size:.82rem}
+}
+@media(max-width:1060px){
+  .nav-cta .btn-primary{display:none}
+  .brand{font-size:1.12rem}
 }
 
 /* Responsive */
