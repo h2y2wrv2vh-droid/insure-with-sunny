@@ -556,6 +556,11 @@
 </div>
 <script>
 (function(){
+  /* Mobile only: eager-load marquee logos. iOS Safari does not fetch loading="lazy"
+     images that slide into view via CSS transform animation, leaving blank tiles. */
+  if(window.matchMedia('(max-width:720px)').matches){
+    document.querySelectorAll('.marquee-track img[loading="lazy"]').forEach(function(img){img.loading='eager';});
+  }
   var t=document.getElementById('navToggle'),n=document.getElementById('mainNav'),c=document.getElementById('navClose');
   function close(){n.classList.remove('open');t.setAttribute('aria-expanded','false');}
   if(t){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});}
