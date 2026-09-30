@@ -180,6 +180,8 @@ p{margin-bottom:14px;color:var(--muted)}
 /* Logo tiles: uniform optical height, full colour */
 .logo-tile{flex-shrink:0;margin-right:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 22px;display:flex;align-items:center;justify-content:center;height:78px;box-sizing:border-box}
 .logo-tile img{height:46px;width:auto;max-width:160px;object-fit:contain}
+.logo-tile img.logo-xl{height:58px}
+.logo-tile img.logo-wide{height:52px;max-width:212px}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}.marquee-tile,.logo-tile{margin-bottom:14px}}
 
