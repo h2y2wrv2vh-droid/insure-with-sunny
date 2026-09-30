@@ -299,8 +299,9 @@ footer.site-footer{background:var(--navy-deep);color:#a9bdcf;padding:56px 0 0;ma
   .nav-menu::before{display:none}
   .nav-drop.open .nav-menu{display:block}
   .hamburger{display:block}
-  .nav-cta .btn{display:none}
-  .nav-cta .btn-sm{display:inline-block}
+  .nav-cta{display:none}
+  .trustbar-inner{gap:8px 20px;padding:12px 0}
+  body{overflow-x:clip}
   .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
   .mobile-callbar{display:flex}
