@@ -307,6 +307,25 @@
       el.style.border='1px solid '+(ok?'#b7e0c3':'#f5c6c2');
     }
   });}
+
+  /* Scroll reveals */
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.grid').forEach(function(grid){
+      grid.querySelectorAll('.card,.testimonial,.stat').forEach(function(el,i){
+        el.classList.add('reveal');
+        el.style.transitionDelay=Math.min(i*70,350)+'ms';
+        io.observe(el);
+      });
+    });
+    document.querySelectorAll('section .center, .split > *').forEach(function(el){
+      el.classList.add('reveal');io.observe(el);
+    });
+  }
 })();
 </script>
 </body>
