@@ -160,6 +160,12 @@ p{margin-bottom:14px;color:var(--muted)}
 .section-dark .quote-form label{color:var(--ink)}
 .section-dark .quote-form p{color:var(--muted)}
 .section-dark .quote-form a{color:var(--blue)}
+/* Light cards inside dark sections: reset to readable dark text (overrides .section-dark a/p rules) */
+.section-dark .card h3{color:var(--navy)}
+.section-dark .card p{color:var(--ink)}
+.section-dark .card a{color:var(--blue)}
+.section-dark .related h3{color:var(--navy)}
+.section-dark .related a{color:var(--blue)}
 
 /* Editorial: testimonial quote marks */
 .testimonial{position:relative}
