@@ -184,6 +184,7 @@ p{margin-bottom:14px;color:var(--muted)}
 .logo-tile img.logo-wide{height:52px;max-width:212px}
 .logo-tile img.logo-big{height:64px;max-width:250px}
 .logo-tile img.logo-bigwide{height:39px;max-width:270px}
+.logo-tile img.logo-md{height:52px;max-width:210px}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}.marquee-tile,.logo-tile{margin-bottom:14px}}
 
