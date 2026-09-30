@@ -556,10 +556,14 @@
 </div>
 <script>
 (function(){
-  /* Mobile only: eager-load marquee logos. iOS Safari does not fetch loading="lazy"
-     images that slide into view via CSS transform animation, leaving blank tiles. */
+  /* Mobile only: force-load marquee logos. iOS Safari does not fetch loading="lazy"
+     images that slide into view via CSS transform animation, leaving blank tiles.
+     Flipping the loading attribute alone is not always honored, so nudge src too. */
   if(window.matchMedia('(max-width:720px)').matches){
-    document.querySelectorAll('.marquee-track img[loading="lazy"]').forEach(function(img){img.loading='eager';});
+    document.querySelectorAll('.marquee-track img').forEach(function(img){
+      img.loading='eager';
+      if(!img.complete){var s=img.getAttribute('src');if(s){img.setAttribute('src',s);}}
+    });
   }
   var t=document.getElementById('navToggle'),n=document.getElementById('mainNav'),c=document.getElementById('navClose');
   function close(){n.classList.remove('open');t.setAttribute('aria-expanded','false');}
