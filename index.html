@@ -565,22 +565,6 @@
       if(!img.complete){var s=img.getAttribute('src');if(s){img.setAttribute('src',s);}}
     });
   }
-  /* TEMP DIAGNOSTIC (?logodiag=1): overlay per-logo load status for the marquee.
-     Remove after the mobile blank-tile issue is resolved. */
-  if(location.search.indexOf('logodiag')>-1){
-    setTimeout(function(){
-      var rows=[];
-      document.querySelectorAll('.marquee-track .logo-tile img').forEach(function(img){
-        var ok=img.complete&&img.naturalWidth>0;
-        var r=img.getBoundingClientRect();
-        rows.push((ok?'OK  ':'FAIL')+' '+img.src.split('/').pop()+' rendered='+Math.round(r.width)+'x'+Math.round(r.height));
-      });
-      var d=document.createElement('div');
-      d.style.cssText='position:fixed;inset:0;background:#fff;z-index:99999;overflow:auto;padding:12px;font:12px/1.5 monospace;white-space:pre;color:#000';
-      d.textContent='MARQUEE DIAG ('+rows.length+' imgs)\n\n'+rows.join('\n');
-      document.body.appendChild(d);
-    },6000);
-  }
   var t=document.getElementById('navToggle'),n=document.getElementById('mainNav'),c=document.getElementById('navClose');
   function close(){n.classList.remove('open');t.setAttribute('aria-expanded','false');}
   if(t){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});}
