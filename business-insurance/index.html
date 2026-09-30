@@ -203,6 +203,7 @@
       <a href="/contact/">Contact</a>
     </nav>
     <div class="nav-cta">
+      <a class="btn btn-gold btn-sm" href="/contact/">Get a Quote</a>
       <a class="btn btn-primary btn-sm" href="tel:+14166065979">416-606-5979</a>
     </div>
   </div>
@@ -274,7 +275,7 @@
     </div>
   </div>
   <div class="form-group"><label for="qMsg">Tell us about your needs</label><textarea id="qMsg" name="message" rows="4" placeholder="e.g. Renewal coming up in 60 days, 2 cars + home in Mississauga…"></textarea></div>
-  <button class="btn btn-primary" type="submit">Send Quote Request</button>
+  <button class="btn btn-primary" type="submit">Get My Free Quote</button>
   <p style="font-size:.85rem;margin-top:12px;margin-bottom:0">Prefer to talk? Call <a href="tel:+14166065979"><strong>416-606-5979</strong></a>, we usually respond the same business day.</p>
 </form></div>
     </div>
@@ -403,6 +404,15 @@
       el.classList.add('reveal');io.observe(el);
     });
   }
+
+  /* Condensed header on scroll */
+  (function(){
+    var h=document.querySelector('.site-header');
+    if(!h) return;
+    function onScroll(){h.classList.toggle('scrolled',window.scrollY>40);}
+    window.addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+  })();
 })();
 </script>
 </body>

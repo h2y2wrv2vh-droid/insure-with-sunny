@@ -139,6 +139,7 @@
       <a href="/contact/">Contact</a>
     </nav>
     <div class="nav-cta">
+      <a class="btn btn-gold btn-sm" href="/contact/">Get a Quote</a>
       <a class="btn btn-primary btn-sm" href="tel:+14166065979">416-606-5979</a>
     </div>
   </div>
@@ -322,6 +323,15 @@
       el.classList.add('reveal');io.observe(el);
     });
   }
+
+  /* Condensed header on scroll */
+  (function(){
+    var h=document.querySelector('.site-header');
+    if(!h) return;
+    function onScroll(){h.classList.toggle('scrolled',window.scrollY>40);}
+    window.addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+  })();
 })();
 </script>
 </body>
