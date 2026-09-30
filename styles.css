@@ -188,7 +188,12 @@ p{margin-bottom:14px;color:var(--muted)}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}.marquee-tile,.logo-tile{margin-bottom:14px}}
 /* Mobile: no edge fade on the logo marquee — the fade zone dominates narrow screens and logos look like they dissolve */
-@media(max-width:720px){.marquee{-webkit-mask-image:none;mask-image:none}}
+@media(max-width:720px){
+  .marquee{-webkit-mask-image:none;mask-image:none}
+  /* iOS Safari stops painting <img> contents inside the sliding track (tiles paint, logos vanish).
+     Promoting each logo to its own compositing layer keeps them painted. */
+  .logo-tile img{-webkit-transform:translateZ(0);transform:translateZ(0)}
+}
 
 /* Light cards inside dark sections: reset to readable dark text (overrides .section-dark a/p rules) */
 .section-dark .card h3{color:var(--navy)}
