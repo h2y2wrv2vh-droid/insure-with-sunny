@@ -187,6 +187,8 @@ p{margin-bottom:14px;color:var(--muted)}
 .logo-tile img.logo-md{height:52px;max-width:210px}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}.marquee-tile,.logo-tile{margin-bottom:14px}}
+/* Mobile: no edge fade on the logo marquee — the fade zone dominates narrow screens and logos look like they dissolve */
+@media(max-width:720px){.marquee{-webkit-mask-image:none;mask-image:none}}
 
 /* Light cards inside dark sections: reset to readable dark text (overrides .section-dark a/p rules) */
 .section-dark .card h3{color:var(--navy)}
