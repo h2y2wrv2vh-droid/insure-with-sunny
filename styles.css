@@ -162,6 +162,7 @@ p{margin-bottom:14px;color:var(--muted)}
 /* Dark quote CTA section */
 .section-dark{background:linear-gradient(160deg,var(--navy-deep),var(--navy) 70%,#0e3a66);color:#c4d4e4}
 .section-dark h2{color:#fff}
+.section-dark h3{color:#fff}
 .section-dark .eyebrow{color:var(--gold)}
 .section-dark .lead,.section-dark p{color:#b9cde2}
 .section-dark .checklist li{color:#e4eef8}
