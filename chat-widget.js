@@ -56,6 +56,8 @@ function setQuick(items){
     b.onclick=function(){handleUserText(t.label,t.action||null);};
     quick.appendChild(b);
   });
+  /* buttons change the panel layout after messages scrolled; re-scroll once laid out */
+  requestAnimationFrame(scrollDown);
 }
 function typing(){var d=document.createElement('div');d.className='iws-msg bot typing';d.id='iws-typing';d.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(d);scrollDown();}
 function untype(){var t=document.getElementById('iws-typing');if(t)t.remove();}
