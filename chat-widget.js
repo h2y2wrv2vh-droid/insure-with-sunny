@@ -117,23 +117,31 @@ var SITE_KB=[
  [/additional living expense/i,'Additional living expenses coverage pays for hotel and living costs if a claim forces you out of your home or rental.'],
  [/tenant liability/i,'Tenant liability covers you if you accidentally damage the building or a neighbouring unit, like a kitchen fire or an overflow.']
 ];
+/* Advice-seeking patterns: always deflect to Sunny, never answer. */
+var ADVICE_RE=/(is|are)\s+my\b.*\bcovered\b|\bam i covered\b|\bdoes\s+my\b.*\bcover\b|\bshould\s+i\s+(buy|get|add|drop|remove|increase|decrease|raise|lower|keep|switch|change|cancel)\b|\bwill\s+my\s+claim\b/i;
+/* If none of these appear, the message is almost certainly not about insurance. */
+var INSURANCE_WORDS=/insur|cover|polic|claim|quote|price|cost|rate|broker|dcpd|cgl|deductib|liabilit|collision|comprehensive|premium|renew|fleet|truck|car|auto|home|condo|tenant|rent|business|commercial|travel|visa|mortgage|discount|bundle|cargo|cyber|flood|fire|theft|accident|injur|damage|trip|office|hour|open|location|mississauga|phone|call/i;
 function fallbackAnswer(t){
-  var lt=t.toLowerCase(),i;
-  for(i=0;i<SITE_KB.length;i++){if(SITE_KB[i][0].test(t))return SITE_KB[i][1];}
-  t=lt;
-  if(/hour|open|close|when.*open|available/.test(t))return 'We are open Monday to Friday, 9:00 AM to 5:00 PM Eastern, and closed on weekends.';
-  if(/where|location|address|mississauga|area|serve/.test(t))return 'We are based in Mississauga and serve all of Ontario.';
-  if(/phone|call|number|talk|human|person|agent|broker/.test(t))return 'You can reach Sunny directly at '+PHONE+'.';
-  if(/claim|accident/.test(t))return 'For claims it is best to talk to Sunny directly so nothing gets lost. Call '+PHONE+'. Want me to have him call you instead?';
-  if(/price|cost|how much|cheap|expensive|rate/.test(t))return 'Every quote is different since it depends on your details. The fastest way to get your number is a quick quote. Want to start one?';
-  if(/commercial|business|fleet|truck|company/.test(t))return 'Yes, commercial and business insurance is a specialty here, including commercial auto and fleets. Want a quote started?';
-  if(/\bdcpd\b|direct compensation/.test(t))return 'DCPD stands for Direct Compensation for Property Damage. In Ontario, it generally means your own insurer pays for damage to your vehicle when another driver is at fault, instead of you claiming against them.';
-  if(/deductible/.test(t))return 'A deductible is the amount you pay out of pocket on a claim before insurance covers the rest. Higher deductibles usually mean lower premiums.';
-  if(/liability/.test(t))return 'Liability coverage generally protects you if you are found responsible for injuring someone or damaging their property.';
-  if(/travel|trip|vacation|super visa/.test(t))return 'We do travel insurance, including multi-trip annual plans and Super Visa medical coverage. Want a quote?';
-  if(/home|house|condo|tenant|rent/.test(t))return 'We cover home, condo, and tenant insurance. Want me to start a quote for you?';
-  if(/auto|car|vehicle|drive/.test(t))return 'We shop auto insurance across many insurers to find the right fit. Want to start a quote?';
-  return null;
+  var i;
+  if(ADVICE_RE.test(t))return{text:'I don\'t want to steer you wrong on that one. Let me have Sunny look at your specific situation personally.',kind:'deflect'};
+  for(i=0;i<SITE_KB.length;i++){if(SITE_KB[i][0].test(t))return{text:SITE_KB[i][1],kind:'answer'};}
+  var l=t.toLowerCase();
+  if(/^(hi|hey|hello|good (morning|afternoon|evening))\b/.test(l))return{text:'Hi there! Are you looking for a quote, or do you have a question I can help with?',kind:'answer'};
+  if(/\bthank/.test(l))return{text:'You\'re welcome! Anything else I can help with?',kind:'answer'};
+  if(/hour|open|close|when.*open|available/.test(l))return{text:'We are open Monday to Friday, 9:00 AM to 5:00 PM Eastern, and closed on weekends.',kind:'answer'};
+  if(/where|location|address|mississauga|area|serve/.test(l))return{text:'We are based in Mississauga and serve all of Ontario.',kind:'answer'};
+  if(/phone|call|number|talk|human|person|agent|broker/.test(l))return{text:'You can reach Sunny directly at '+PHONE+'.',kind:'answer'};
+  if(/claim|accident/.test(l))return{text:'For claims it is best to talk to Sunny directly so nothing gets lost. Call '+PHONE+'. Want me to have him call you instead?',kind:'answer'};
+  if(/price|cost|how much|cheap|expensive|rate/.test(l))return{text:'Every quote is different since it depends on your details. The fastest way to get your number is a quick quote. Want to start one?',kind:'answer'};
+  if(/commercial|business|fleet|truck|company/.test(l))return{text:'Commercial and business insurance is a specialty here, including commercial auto and fleets. Want a quote started?',kind:'answer'};
+  if(/\bdcpd\b|direct compensation/.test(l))return{text:'DCPD stands for Direct Compensation for Property Damage. In Ontario, it generally means your own insurer pays for damage to your vehicle when another driver is at fault, instead of you claiming against them.',kind:'answer'};
+  if(/deductible/.test(l))return{text:'A deductible is the amount you pay out of pocket on a claim before insurance covers the rest. Higher deductibles usually mean lower premiums.',kind:'answer'};
+  if(/liability/.test(l))return{text:'Liability coverage generally protects you if you are found responsible for injuring someone or damaging their property.',kind:'answer'};
+  if(/travel|trip|vacation|super visa/.test(l))return{text:'We do travel insurance, including multi-trip annual plans and Super Visa medical coverage. Want a quote?',kind:'answer'};
+  if(/home|house|condo|tenant|rent/.test(l))return{text:'We cover home, condo, and tenant insurance. Want me to start a quote for you?',kind:'answer'};
+  if(/auto|car|vehicle|drive/.test(l))return{text:'We shop auto insurance across many insurers to find the right fit. Want to start a quote?',kind:'answer'};
+  if(!INSURANCE_WORDS.test(l))return{text:'I\'m here to help with insurance questions. Is there something about auto, home, business or travel insurance I can help with?',kind:'offtopic'};
+  return{text:'I want to make sure you get the right answer, so let me have Sunny take this one personally.',kind:'deflect'};
 }
 
 /* ---------- AI ---------- */
@@ -171,10 +179,11 @@ function handleUserText(text,action){
   });
 }
 function ruleReply(text){
-  var a=fallbackAnswer(text);
-  if(a){botSay(a);setQuick([{label:'Get a quote',action:'quote'},{label:'Call '+PHONE,action:'call'}]);}
-  else{botSay('I want to make sure you get the right answer, so let me have Sunny take this one personally.');
-    setQuick([{label:'Yes, have Sunny contact me',action:'quote'},{label:'Ask something else',action:'ask'}]);}
+  var r=fallbackAnswer(text);
+  botSay(r.text);
+  if(r.kind==='deflect')setQuick([{label:'Yes, have Sunny contact me',action:'quote'},{label:'Ask something else',action:'ask'}]);
+  else if(r.kind==='offtopic')setQuick([{label:'Get a quote',action:'quote'},{label:'Ask about insurance',action:'ask'}]);
+  else setQuick([{label:'Get a quote',action:'quote'},{label:'Call '+PHONE,action:'call'}]);
 }
 
 form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();input.value='';if(v)handleUserText(v,null);});
