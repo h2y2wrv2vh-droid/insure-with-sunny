@@ -29,15 +29,19 @@ module.exports = async function(req, res){
     return {role:m.role==='model'?'model':'user',parts:[{text:String(m.text||'').slice(0,1000)}]};
   });
   try{
+    var ctrl=new AbortController();
+    var timer=setTimeout(function(){ctrl.abort();},12000);
     var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent',{
       method:'POST',
       headers:{'x-goog-api-key':key,'Content-Type':'application/json'},
+      signal:ctrl.signal,
       body:JSON.stringify({
         system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
         contents:contents,
         generationConfig:{maxOutputTokens:300,temperature:0.7}
       })
     });
+    clearTimeout(timer);
     if(!r.ok){res.status(200).json({fallback:true});return;}
     var data=await r.json();
     var parts=((data.candidates||[])[0]||{}).content||{};
