@@ -124,6 +124,8 @@ var INSURANCE_WORDS=/insur|cover|polic|claim|quote|price|cost|rate|broker|dcpd|c
 function fallbackAnswer(t){
   var i;
   if(ADVICE_RE.test(t))return{text:'I don\'t want to steer you wrong on that one. Let me have Sunny look at your specific situation personally.',kind:'deflect'};
+  if(/\bi\s+(need|want)\b/i.test(t)&&!/\b(what|explain|define|mean)\b/.test(t))
+    return{text:'I can help with that. Let me get a quote started for you.',kind:'answer'};
   for(i=0;i<SITE_KB.length;i++){if(SITE_KB[i][0].test(t))return{text:SITE_KB[i][1],kind:'answer'};}
   var l=t.toLowerCase();
   if(/^(hi|hey|hello|good (morning|afternoon|evening))\b/.test(l))return{text:'Hi there! Are you looking for a quote, or do you have a question I can help with?',kind:'answer'};
