@@ -105,6 +105,9 @@ function fallbackAnswer(t){
   if(/claim|accident/.test(t))return 'For claims it is best to talk to Sunny directly so nothing gets lost. Call '+PHONE+'. Want me to have him call you instead?';
   if(/price|cost|how much|cheap|expensive|rate/.test(t))return 'Every quote is different since it depends on your details. The fastest way to get your number is a quick quote. Want to start one?';
   if(/commercial|business|fleet|truck|company/.test(t))return 'Yes, commercial and business insurance is a specialty here, including commercial auto and fleets. Want a quote started?';
+  if(/\bdcpd\b|direct compensation/.test(t))return 'DCPD stands for Direct Compensation for Property Damage. In Ontario, it generally means your own insurer pays for damage to your vehicle when another driver is at fault, instead of you claiming against them.';
+  if(/deductible/.test(t))return 'A deductible is the amount you pay out of pocket on a claim before insurance covers the rest. Higher deductibles usually mean lower premiums.';
+  if(/liability/.test(t))return 'Liability coverage generally protects you if you are found responsible for injuring someone or damaging their property.';
   if(/travel|trip|vacation|super visa/.test(t))return 'We do travel insurance, including multi-trip annual plans and Super Visa medical coverage. Want a quote?';
   if(/home|house|condo|tenant|rent/.test(t))return 'We cover home, condo, and tenant insurance. Want me to start a quote for you?';
   if(/auto|car|vehicle|drive/.test(t))return 'We shop auto insurance across many insurers to find the right fit. Want to start a quote?';
