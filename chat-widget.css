@@ -32,6 +32,7 @@
 #iws-chat-send{width:42px;height:42px;border-radius:50%;border:none;background:var(--gold,#d9a441);color:#0b2a4a;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 #iws-chat-send svg{width:18px;height:18px}
 #iws-chat-send:disabled{opacity:.5;cursor:default}
+.iws-chat-disclaimer{font-size:.66rem;color:#8a9bab;text-align:center;padding:7px 14px;background:#fff;line-height:1.4}
 @media(max-width:720px){
   #iws-chat{right:16px;bottom:152px}
   #iws-chat-panel{bottom:72px}
