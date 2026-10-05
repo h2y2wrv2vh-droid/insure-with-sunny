@@ -29,7 +29,7 @@ module.exports = async function(req, res){
     return {role:m.role==='model'?'model':'user',parts:[{text:String(m.text||'').slice(0,1000)}]};
   });
   try{
-    var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',{
+    var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent',{
       method:'POST',
       headers:{'x-goog-api-key':key,'Content-Type':'application/json'},
       body:JSON.stringify({
