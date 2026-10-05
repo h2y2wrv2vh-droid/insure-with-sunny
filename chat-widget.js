@@ -97,8 +97,28 @@ function finishCapture(ok){
 }
 
 /* ---------- rule-based fallback ---------- */
+var SITE_KB=[
+ [/cgl|commercial general liability/i,'CGL stands for Commercial General Liability. It is the foundation of every business policy, covering bodily injury, property damage and completed operations, usually at $2M to $5M limits.'],
+ [/professional liability|e ?& ?o|errors and omissions/i,'Professional liability (E&O) covers consultants, designers and service businesses against claims arising from their professional advice.'],
+ [/business interruption/i,'Business interruption coverage helps with lost income and extra expenses when a claim temporarily shuts your business down.'],
+ [/cyber|ransomware|data breach/i,'Cyber liability covers things like breach response, ransomware and privacy liability for businesses that hold client data.'],
+ [/cargo/i,'Motor truck cargo insurance covers the freight you haul, with limits matched to what you carry: reefer, dry van, flatbed or specialized.'],
+ [/\bfleet\b/i,'Fleet coverage is available for trucking and commercial vehicle fleets, with liability structured for the operation, including US exposure where needed.'],
+ [/collision/i,'Collision coverage generally pays to repair or replace your vehicle after a crash, minus your deductible.'],
+ [/comprehensive/i,'Comprehensive generally covers theft, vandalism, hail, falling objects and similar non-crash damage to your vehicle.'],
+ [/accident benefits/i,'Accident benefits cover medical costs, attendant care and income replacement after an auto accident. Limits can be increased beyond the standard.'],
+ [/uninsured motorist/i,'Uninsured motorist coverage protects you if you are hit by an uninsured or unidentified driver.'],
+ [/sewer backup|overland water/i,'Water damage options like sewer backup and overland water endorsements cover the kinds of water claims Ontario homeowners actually file.'],
+ [/loss assessment/i,'Loss assessment coverage protects condo owners if the condo corporation levies a special assessment after a major claim.'],
+ [/trip cancellation|trip interruption/i,'Trip cancellation and interruption coverage reimburses you when illness, weather or emergencies cancel or cut short your trip.'],
+ [/super visa/i,'Super Visa insurance provides emergency medical coverage for visiting parents and grandparents, meeting the Super Visa requirements.'],
+ [/additional living expense/i,'Additional living expenses coverage pays for hotel and living costs if a claim forces you out of your home or rental.'],
+ [/tenant liability/i,'Tenant liability covers you if you accidentally damage the building or a neighbouring unit, like a kitchen fire or an overflow.']
+];
 function fallbackAnswer(t){
-  t=t.toLowerCase();
+  var lt=t.toLowerCase(),i;
+  for(i=0;i<SITE_KB.length;i++){if(SITE_KB[i][0].test(t))return SITE_KB[i][1];}
+  t=lt;
   if(/hour|open|close|when.*open|available/.test(t))return 'We are open Monday to Friday, 9:00 AM to 5:00 PM Eastern, and closed on weekends.';
   if(/where|location|address|mississauga|area|serve/.test(t))return 'We are based in Mississauga and serve all of Ontario.';
   if(/phone|call|number|talk|human|person|agent|broker/.test(t))return 'You can reach Sunny directly at '+PHONE+'.';
