@@ -1,0 +1,169 @@
+/* Insure With Sunny - chat widget. AI answers via /api/chat (Gemini); rule-based fallback when unavailable. */
+(function(){
+'use strict';
+var APPS_SCRIPT='https://script.google.com/macros/s/AKfycbxEAuVTYPyy_OaRx2GzJv-KdGnxaH4asdpq6gX3IJ3IbWPbHRGHECUtGWiLbSNiaR4S3Q/exec';
+var PHONE='416-606-5979';
+var PHONE_HREF='tel:+14166065979';
+
+function bizHours(){
+  try{
+    var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Toronto',weekday:'short',hour:'numeric',hour12:false}).formatToParts(new Date());
+    var d='',h=0;
+    parts.forEach(function(p){if(p.type==='weekday')d=p.value;if(p.type==='hour')h=parseInt(p.value,10);});
+    if(h===24)h=0;
+    return ['Mon','Tue','Wed','Thu','Fri'].indexOf(d)>-1&&h>=9&&h<17;
+  }catch(e){return false;}
+}
+var IN_HOURS=bizHours();
+
+/* ---------- DOM ---------- */
+var root=document.createElement('div');root.id='iws-chat';
+root.innerHTML=
+ '<div id="iws-chat-panel" hidden>'+
+  '<div class="iws-chat-header"><span class="iws-chat-statusdot'+(IN_HOURS?'':' away')+'"></span>'+
+  '<div><strong>Insure With Sunny</strong><small>'+(IN_HOURS?'Online now, typically replies in minutes':'Leave a message, replies next business day')+'</small></div>'+
+  '<button id="iws-chat-close" aria-label="Close chat">&times;</button></div>'+
+  '<div id="iws-chat-msgs"></div><div id="iws-chat-quick"></div>'+
+  '<form id="iws-chat-form"><input id="iws-chat-input" placeholder="Type your message..." autocomplete="off" maxlength="500" aria-label="Type your message">'+
+  '<button id="iws-chat-send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></form>'+
+ '</div>'+
+ '<button id="iws-chat-bubble" aria-label="Open chat"><span class="iws-dot"></span>'+
+ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></button>';
+document.body.appendChild(root);
+
+var panel=root.querySelector('#iws-chat-panel'),
+    bubble=root.querySelector('#iws-chat-bubble'),
+    msgs=root.querySelector('#iws-chat-msgs'),
+    quick=root.querySelector('#iws-chat-quick'),
+    form=root.querySelector('#iws-chat-form'),
+    input=root.querySelector('#iws-chat-input'),
+    sendBtn=root.querySelector('#iws-chat-send');
+
+var history=[];      // {role:'user'|'model', text}
+var capture=null;    // lead-capture state
+var aiFailed=false;  // switch to rule-based fallback
+
+function scrollDown(){msgs.scrollTop=msgs.scrollHeight;}
+function addMsg(text,who){
+  var d=document.createElement('div');d.className='iws-msg '+who;d.textContent=text;
+  msgs.appendChild(d);scrollDown();return d;
+}
+function setQuick(items){
+  quick.innerHTML='';
+  items.forEach(function(t){
+    var b=document.createElement('button');b.type='button';b.className='iws-quick';b.textContent=t.label;
+    b.onclick=function(){handleUserText(t.label,t.action||null);};
+    quick.appendChild(b);
+  });
+}
+function typing(){var d=document.createElement('div');d.className='iws-msg bot typing';d.id='iws-typing';d.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(d);scrollDown();}
+function untype(){var t=document.getElementById('iws-typing');if(t)t.remove();}
+function botSay(text){addMsg(text,'bot');history.push({role:'model',text:text});}
+
+/* ---------- lead capture ---------- */
+var CAPTURE_STEPS=[
+  {key:'type',q:'What do you need insurance for?',opts:['Auto','Home','Business','Travel']},
+  {key:'name',q:'What is your name?'},
+  {key:'phone',q:'And the best phone number to reach you?'},
+  {key:'email',q:'What is your email address?'}
+];
+function startCapture(contextMsg){
+  capture={step:0,data:{message:'Website chat lead'}};
+  if(contextMsg)botSay(contextMsg);
+  askCaptureStep();
+}
+function askCaptureStep(){
+  var s=CAPTURE_STEPS[capture.step];
+  addMsg(s.q,'bot');history.push({role:'model',text:s.q});
+  if(s.opts)setQuick(s.opts.map(function(o){return{label:o};}));
+  else setQuick([]);
+}
+function handleCapture(text){
+  var s=CAPTURE_STEPS[capture.step];
+  if(s.key==='phone'&&text.replace(/\D/g,'').length<7){addMsg('Could you double-check that number? Just digits is fine.','bot');return;}
+  if(s.key==='email'&&!/^\S+@\S+\.\S+$/.test(text)){addMsg('That email does not look quite right. Mind trying again?','bot');return;}
+  capture.data[s.key]=text;capture.step++;
+  if(capture.step<CAPTURE_STEPS.length){askCaptureStep();return;}
+  setQuick([]);typing();
+  fetch(APPS_SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(capture.data)})
+  .then(function(){finishCapture(true);}).catch(function(){finishCapture(false);});
+}
+function finishCapture(ok){
+  untype();capture=null;
+  if(ok)botSay(IN_HOURS?'Thanks! Your request is in and Sunny will be in touch shortly. Prefer to talk now? Call '+PHONE+'.':'Thanks! Your request is in. Sunny will get back to you next business day. For anything urgent, call '+PHONE+'.');
+  else botSay('Something glitched on my end. Please call '+PHONE+' and Sunny will help you directly.');
+  setQuick([{label:'Call '+PHONE,action:'call'},{label:'Ask another question',action:'ask'}]);
+}
+
+/* ---------- rule-based fallback ---------- */
+function fallbackAnswer(t){
+  t=t.toLowerCase();
+  if(/hour|open|close|when.*open|available/.test(t))return 'We are open Monday to Friday, 9:00 AM to 5:00 PM Eastern, and closed on weekends.';
+  if(/where|location|address|mississauga|area|serve/.test(t))return 'We are based in Mississauga and serve all of Ontario.';
+  if(/phone|call|number|talk|human|person|agent|broker/.test(t))return 'You can reach Sunny directly at '+PHONE+'.';
+  if(/claim|accident/.test(t))return 'For claims it is best to talk to Sunny directly so nothing gets lost. Call '+PHONE+'. Want me to have him call you instead?';
+  if(/price|cost|how much|cheap|expensive|rate/.test(t))return 'Every quote is different since it depends on your details. The fastest way to get your number is a quick quote. Want to start one?';
+  if(/commercial|business|fleet|truck|company/.test(t))return 'Yes, commercial and business insurance is a specialty here, including commercial auto and fleets. Want a quote started?';
+  if(/travel|trip|vacation|super visa/.test(t))return 'We do travel insurance, including multi-trip annual plans and Super Visa medical coverage. Want a quote?';
+  if(/home|house|condo|tenant|rent/.test(t))return 'We cover home, condo, and tenant insurance. Want me to start a quote for you?';
+  if(/auto|car|vehicle|drive/.test(t))return 'We shop auto insurance across many insurers to find the right fit. Want to start a quote?';
+  return null;
+}
+
+/* ---------- AI ---------- */
+function askAI(cb){
+  var payload={messages:history.slice(-10)};
+  fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(function(r){return r.json();})
+  .then(function(d){cb(d&&d.reply?d.reply:null);})
+  .catch(function(){cb(null);});
+}
+
+/* ---------- main flow ---------- */
+function greet(){
+  if(IN_HOURS)botSay('Hi there! Looking for a quote or have a question? Sunny is in the office right now, or I can take your info here.');
+  else botSay('Hi there! Looking for a quote or have a question? Leave your info and Sunny will get back to you next business day.');
+  setQuick([{label:'Get a quote',action:'quote'},{label:'Ask a question',action:'ask'},{label:'Call '+PHONE,action:'call'}]);
+}
+function handleUserText(text,action){
+  if(!text)return;
+  addMsg(text,'user');history.push({role:'user',text:text});setQuick([]);
+  if(action==='call'){window.location.href=PHONE_HREF;botSay('Calling '+PHONE+' now.');setQuick([{label:'Get a quote',action:'quote'},{label:'Ask a question',action:'ask'}]);return;}
+  if(action==='quote'){startCapture('Great, let us get that started.');return;}
+  if(action==='ask'){botSay('Sure, what would you like to know?');return;}
+  if(capture){handleCapture(text);return;}
+  typing();
+  if(aiFailed){setTimeout(function(){untype();ruleReply(text);},600);return;}
+  askAI(function(reply){
+    untype();
+    if(reply){
+      var lead=reply.indexOf('[LEAD]')>-1;
+      botSay(reply.replace('[LEAD]','').trim());
+      if(lead)setQuick([{label:'Yes, have Sunny contact me',action:'quote'},{label:'Not right now',action:'ask'}]);
+      else setQuick([{label:'Get a quote',action:'quote'},{label:'Call '+PHONE,action:'call'}]);
+    }else{aiFailed=true;ruleReply(text);}
+  });
+}
+function ruleReply(text){
+  var a=fallbackAnswer(text);
+  if(a){botSay(a);setQuick([{label:'Get a quote',action:'quote'},{label:'Call '+PHONE,action:'call'}]);}
+  else{botSay('I want to make sure you get the right answer, so let me have Sunny take this one personally.');
+    setQuick([{label:'Yes, have Sunny contact me',action:'quote'},{label:'Ask something else',action:'ask'}]);}
+}
+
+form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();input.value='';if(v)handleUserText(v,null);});
+
+/* ---------- open/close ---------- */
+var opened=false;
+function open(){panel.hidden=false;opened=true;try{sessionStorage.setItem('iws_chat_seen','1');}catch(e){}if(!history.length)greet();}
+function close(){panel.hidden=true;}
+bubble.addEventListener('click',function(){panel.hidden?open():close();});
+root.querySelector('#iws-chat-close').addEventListener('click',close);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+
+/* auto-open once per session after 20s */
+setTimeout(function(){
+  var seen=false;try{seen=!!sessionStorage.getItem('iws_chat_seen');}catch(e){}
+  if(!seen&&!opened)open();
+},20000);
+})();
