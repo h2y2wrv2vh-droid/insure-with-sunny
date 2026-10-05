@@ -45,7 +45,7 @@ module.exports = async function(req, res){
     if(!r.ok){res.status(200).json({fallback:true});return;}
     var data=await r.json();
     var parts=((data.candidates||[])[0]||{}).content||{};
-    var text=(parts.parts||[]).map(function(p){return p.text||'';}).join('').trim();
+    var text=(parts.parts||[]).filter(function(p){return !p.thought;}).map(function(p){return p.text||'';}).join('').trim();
     if(!text){res.status(200).json({fallback:true});return;}
     res.status(200).json({reply:text});
   }catch(e){
