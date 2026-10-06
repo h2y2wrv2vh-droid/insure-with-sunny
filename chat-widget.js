@@ -115,15 +115,18 @@ var SITE_KB=[
  [/trip cancellation|trip interruption/i,'Trip cancellation and interruption coverage reimburses you when illness, weather or emergencies cancel or cut short your trip.'],
  [/super visa/i,'Super Visa insurance provides emergency medical coverage for visiting parents and grandparents, meeting the Super Visa requirements.'],
  [/additional living expense/i,'Additional living expenses coverage pays for hotel and living costs if a claim forces you out of your home or rental.'],
- [/tenant liability/i,'Tenant liability covers you if you accidentally damage the building or a neighbouring unit, like a kitchen fire or an overflow.']
+ [/tenant liability/i,'Tenant liability covers you if you accidentally damage the building or a neighbouring unit, like a kitchen fire or an overflow.'],
+ [/\bumbrella\b/i,'An umbrella policy generally adds extra liability protection on top of your home and auto policies, kicking in when those limits run out.'],
+ [/\blandlord\b/i,'Landlord insurance generally covers the rental building and your liability as the property owner. The tenant\'s own belongings stay their responsibility.']
 ];
 /* Advice-seeking patterns: always deflect to Sunny, never answer. */
 var ADVICE_RE=/(is|are)\s+my\b.*\bcovered\b|\bam i covered\b|\bdoes\s+my\b.*\bcover\b|\bshould\s+i\s+(buy|get|add|drop|remove|increase|decrease|raise|lower|keep|switch|change|cancel)\b|\bwill\s+my\s+claim\b/i;
 /* If none of these appear, the message is almost certainly not about insurance. */
-var INSURANCE_WORDS=/insur|cover|polic|claim|quote|price|cost|rate|broker|dcpd|cgl|deductib|liabilit|collision|comprehensive|premium|renew|fleet|truck|car|auto|home|condo|tenant|rent|business|commercial|travel|visa|mortgage|discount|bundle|cargo|cyber|flood|fire|theft|accident|injur|damage|trip|office|hour|open|location|mississauga|phone|call/i;
+var INSURANCE_WORDS=/insur|cover|polic|claim|quote|price|cost|rate|broker|dcpd|cgl|deductib|liabilit|collision|comprehensive|premium|renew|fleet|truck|car|auto|home|condo|tenant|rent|business|commercial|travel|visa|mortgage|discount|bundle|cargo|cyber|flood|fire|theft|accident|injur|damage|trip|office|hour|open|location|mississauga|phone|call|surety|bond|umbrella|excess|contractor|builder|construction|landlord|life|disabilit|health|dental|pet|boat|marine|motorcycle|rv|trailer|snowmobile|equipment|crime|fidelity|pollution|professional|errors|omissions|directors|officers|event|wedding|farm|garage|installation|floater|bailee|warranty/i;
 function fallbackAnswer(t){
   var i;
   if(ADVICE_RE.test(t))return{text:'I don\'t want to steer you wrong on that one. Let me have Sunny look at your specific situation personally.',kind:'deflect'};
+  if(/surety/.test(t))return{text:'A surety bond generally guarantees that a contractor or business will meet its obligations on a job. Project owners often require one before work starts. If you need a bond for a project, let me have Sunny take a look.',kind:'deflect'};
   if(/\bi\s+(need|want)\b/i.test(t)&&!/\b(what|explain|define|mean)\b/.test(t))
     return{text:'I can help with that. Let me get a quote started for you.',kind:'answer'};
   for(i=0;i<SITE_KB.length;i++){if(SITE_KB[i][0].test(t))return{text:SITE_KB[i][1],kind:'answer'};}
