@@ -8,7 +8,7 @@ var SYSTEM_PROMPT = [
 '',
 'Facts you may share:',
 '- Hours: Monday to Friday, 9:00 AM to 5:00 PM Eastern. Closed weekends.',
-'- Phone: 416-606-5979. Email: sunny.grewal@aaxelinsurance.com.',
+'- Phone: 416-606-5979. Email: quotes@insurewithsunny.ca.',
 '- Services: auto insurance, home insurance, condo insurance, tenant and renters insurance, commercial and business insurance (including commercial auto and fleets), travel insurance.',
 '- The brokerage compares rates across many top-rated insurers to find the right fit.',
 '',
