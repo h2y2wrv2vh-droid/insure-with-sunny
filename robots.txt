@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /flight-tracker/
+
 Sitemap: https://insurewithsunny.ca/sitemap.xml
 
 # v1

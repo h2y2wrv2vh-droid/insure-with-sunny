@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Flight Tracker</title>
+<style>
+  :root { --navy: #0e3a66; --bg: #f4f7fb; --card: #ffffff; --muted: #5b6b7f; --green: #1a7f37; --greenbg: #e6f4ea; --amber: #9a6700; --amberbg: #fef3d8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: #1c2b3a; -webkit-text-size-adjust: 100%; }
+  header { background: var(--navy); color: #fff; padding: 28px 20px 24px; }
+  header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+  header p { font-size: 14px; opacity: 0.85; margin-top: 6px; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px 16px 48px; }
+  .toolbar { display: flex; gap: 10px; align-items: center; margin: 4px 0 16px; flex-wrap: wrap; }
+  .btn { display: inline-block; background: var(--navy); color: #fff; border: none; border-radius: 999px; padding: 12px 22px; font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer; }
+  .btn-outline { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
+  .cur-wrap { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+  select { font-size: 15px; padding: 8px 10px; border-radius: 10px; border: 1.5px solid #cdd9e6; background: #fff; color: #1c2b3a; }
+  .updated { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
+  .card { background: var(--card); border-radius: 16px; padding: 18px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(14,58,102,0.08); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .dest { font-size: 19px; font-weight: 700; }
+  .route { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .meta { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  .price-row { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .price { font-size: 32px; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
+  .per { font-size: 13px; color: var(--muted); }
+  .badge { display: inline-block; font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 4px 10px; }
+  .badge.drop { background: var(--greenbg); color: var(--green); }
+  .badge.stale { background: var(--amberbg); color: var(--amber); }
+  .spark { margin-top: 12px; }
+  .spark svg { width: 100%; height: 56px; display: block; }
+  .card-actions { margin-top: 14px; display: flex; gap: 10px; }
+  .card-actions .btn { padding: 10px 18px; font-size: 14px; }
+  .checked { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .empty { text-align: center; padding: 48px 20px; background: var(--card); border-radius: 16px; box-shadow: 0 1px 4px rgba(14,58,102,0.08); }
+  .empty h2 { font-size: 19px; margin-bottom: 8px; }
+  .empty p { font-size: 14px; color: var(--muted); margin-bottom: 18px; line-height: 1.55; }
+  .error { background: #fdecea; color: #9c2b2b; border-radius: 12px; padding: 16px; font-size: 14px; line-height: 1.5; }
+  footer { text-align: center; font-size: 12px; color: var(--muted); padding: 0 20px 32px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Flight Tracker</h1>
+  <p>Wishlist trips, checked for price drops every day.</p>
+</header>
+<main>
+  <div class="toolbar">
+    <a class="btn" id="addTripBtn" href="#">+ Add a trip</a>
+    <div class="cur-wrap">
+      <label for="currency">Currency</label>
+      <select id="currency">
+        <option value="USD">USD $</option>
+        <option value="CAD">CAD $</option>
+        <option value="EUR">EUR €</option>
+        <option value="GBP">GBP £</option>
+      </select>
+    </div>
+  </div>
+  <div class="updated" id="updatedLine"></div>
+  <div id="cards"></div>
+</main>
+<footer>Prices are checked daily and shown as round-trip totals.<br>Fares move fast — a tracked price is a snapshot, not a guarantee.</footer>
+
+<script>
+var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeKp8NWvNbb2t3RXibqySQd9EOyBKUKyaywc38ommOcz8WgKA/viewform";
+document.getElementById("addTripBtn").href = FORM_URL;
+
+var currency = localStorage.getItem("ft-currency") || "USD";
+var currencySel = document.getElementById("currency");
+currencySel.value = currency;
+currencySel.addEventListener("change", function () {
+  currency = currencySel.value;
+  localStorage.setItem("ft-currency", currency);
+  render(window._data);
+});
+
+function fmt(usd, fx) {
+  var rate = (fx && fx[currency]) || 1;
+  var val = usd * rate;
+  try {
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: currency, maximumFractionDigits: 0 }).format(val);
+  } catch (e) { return Math.round(val) + " " + currency; }
+}
+
+function fmtDate(iso) {
+  if (!iso) return "";
+  var d = new Date(iso + "T12:00:00");
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function sparkline(history) {
+  if (!history || history.length < 2) return "";
+  var w = 300, h = 56, pad = 6;
+  var prices = history.map(function (p) { return p.priceUSD; });
+  var min = Math.min.apply(null, prices), max = Math.max.apply(null, prices);
+  var span = (max - min) || 1;
+  var pts = prices.map(function (p, i) {
+    var x = pad + (i / (prices.length - 1)) * (w - pad * 2);
+    var y = h - pad - ((p - min) / span) * (h - pad * 2);
+    return x.toFixed(1) + "," + y.toFixed(1);
+  }).join(" ");
+  var last = prices[prices.length - 1], first = prices[0];
+  var color = last < first ? "#1a7f37" : (last > first ? "#b3261e" : "#5b6b7f");
+  return '<div class="spark"><svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none">' +
+    '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    "</svg></div>";
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function render(data) {
+  window._data = data;
+  var wrap = document.getElementById("cards");
+  var updatedLine = document.getElementById("updatedLine");
+  if (!data || !data.trips) {
+    wrap.innerHTML = '<div class="error">Could not load tracker data. Please try again later.</div>';
+    return;
+  }
+  if (data.updatedAt) {
+    var d = new Date(data.updatedAt);
+    updatedLine.textContent = "Last checked " + d.toLocaleDateString("en-US", { month: "short", day: "numeric" }) + " at " +
+      d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  }
+  if (!data.trips.length) {
+    wrap.innerHTML = '<div class="empty"><h2>No trips tracked yet</h2>' +
+      '<p>Add a destination and your estimated travel dates, and this page will watch the price for you every day.</p>' +
+      '<a class="btn" href="' + FORM_URL + '">Add your first trip</a></div>';
+    return;
+  }
+  var fx = data.fx || { USD: 1 };
+  var html = "";
+  data.trips.forEach(function (t) {
+    var price = (t.currentPriceUSD != null) ? fmt(t.currentPriceUSD, fx) : "—";
+    var dates = fmtDate(t.departDate) + (t.returnDate ? " → " + fmtDate(t.returnDate) : " (one-way)");
+    var badges = "";
+    if (t.dropPct7d != null && t.dropPct7d <= -5) {
+      badges += '<span class="badge drop">Down ' + Math.abs(Math.round(t.dropPct7d)) + '% this week</span> ';
+    }
+    if (t.checkOk === false) {
+      badges += '<span class="badge stale">Check failed — showing last price</span>';
+    }
+    html += '<div class="card">' +
+      '<div class="card-top"><div><div class="dest">' + esc(t.destination) + '</div>' +
+      '<div class="route">' + esc(t.homeAirport) + " → " + esc(t.destAirport) + '</div></div></div>' +
+      '<div class="meta">' + esc(dates) + " · " + esc(t.adults) + (t.adults == 1 ? " traveler" : " travelers") +
+      " · " + esc(t.cabin) + (t.maxStops === 0 ? " · Nonstop" : "") + "</div>" +
+      '<div class="price-row"><span class="price">' + price + '</span><span class="per">round trip' +
+      (t.cheapestAirline ? " · " + esc(t.cheapestAirline) : "") + "</span>" + badges + "</div>" +
+      sparkline(t.history) +
+      '<div class="card-actions"><a class="btn btn-outline" href="' + FORM_URL + '">Notify me of price drops</a></div>' +
+      (t.lastChecked ? '<div class="checked">Checked ' + esc(t.lastChecked) + "</div>" : "") +
+      "</div>";
+  });
+  wrap.innerHTML = html;
+}
+
+fetch("prices.json", { cache: "no-store" })
+  .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+  .then(render)
+  .catch(function () { render(null); });
+</script>
+</body>
+</html>
