@@ -373,6 +373,7 @@
       var visitorName=g('qName');
       f.reset();
       showStatus('Thank you'+(visitorName?', '+visitorName:'')+'! Your quote request has been received. Someone from our office will contact you shortly. Need something urgent? Call or text 416-606-5979.',true);
+      if (typeof gtag === 'function') { gtag('event', 'generate_lead'); }
     }).catch(function(){
       showStatus('Something went wrong. Please call us at 416-606-5979 or email quotes@insurewithsunny.ca.',false);
     }).finally(function(){
