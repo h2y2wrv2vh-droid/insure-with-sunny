@@ -319,6 +319,15 @@
     </div>
   </div>
   <div class="form-group"><label for="qMsg">Tell us about your needs</label><textarea id="qMsg" name="message" rows="4" placeholder="e.g. Renewal coming up in 60 days, 2 cars + home in Mississauga…"></textarea></div>
+  <div class="form-group"><label for="qSource">How did you hear about us? (optional)</label>
+    <select id="qSource" name="source">
+      <option value="">Prefer not to say</option>
+      <option>Google search</option>
+      <option>ChatGPT / AI search</option>
+      <option>Referral</option>
+      <option>Other</option>
+    </select>
+  </div>
   <button class="btn btn-primary" type="submit">Get My Free Quote</button>
   <p style="font-size:.85rem;margin-top:12px;margin-bottom:0">Prefer to talk? Call <a href="tel:+14166065979"><strong>416-606-5979</strong></a>, we usually respond the same business day.</p>
 </form></div>
@@ -428,7 +437,7 @@
     e.preventDefault();
     var g=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
     var subject='Quote Request, '+g('qType')+', '+g('qName');
-    var body='Name: '+g('qName')+'\nPhone: '+g('qPhone')+'\nEmail: '+g('qEmail')+'\nInsurance needed: '+g('qType')+'\n\nDetails:\n'+g('qMsg');
+    var body='Name: '+g('qName')+'\nPhone: '+g('qPhone')+'\nEmail: '+g('qEmail')+'\nInsurance needed: '+g('qType')+(g('qSource')?'\nHow they heard about us: '+g('qSource'):'')+'\n\nDetails:\n'+g('qMsg');
     window.location.href='mailto:quotes@insurewithsunny.ca?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   });}
 
