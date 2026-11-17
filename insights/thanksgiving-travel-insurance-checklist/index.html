@@ -256,6 +256,10 @@
       <p>Thanksgiving weekend is almost here, and across Ontario, families are packing the car for the cottage, the highway to visit grandparents, or a flight somewhere warmer. Before you leave, a quick insurance check can save you from an unpleasant surprise.</p>
 <h2>Travel Medical: Start Here If You Are Leaving Ontario</h2>
 <p>If your Thanksgiving plans take you outside Ontario, this is the most important item on the list. Ontario's public health coverage applies outside the province in only a limited way, and outside Canada it covers a very small share of medical costs. A broken bone from a slip on wet steps or a hospital stay from a stomach bug can become an out-of-pocket problem fast.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/thanksgiving-travel-insurance-checklist.jpg" alt="A family packing suitcases and bags into a car in a driveway before a Thanksgiving trip" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Before you leave for Thanksgiving weekend, a quick insurance check can save you a surprise. Click to enlarge.</figcaption>
+</figure>
 <p>Travel medical insurance fills that gap, and many plans are sold by trip length so you do not pay for a full year you will not use. If you already carry a multi-trip annual plan, check that it is still active and that your trip falls within the per-trip day limit.</p>
 <p>If anyone in your group has a medical condition, read the stability clause in the wording. Many policies require a condition to have been stable, meaning no new treatment or medication changes, for a set period before departure. This is one of the most common reasons travel medical claims are denied.</p>
 <h2>Trip Cancellation and Interruption: Protect the Non-Refundable Stuff</h2>
@@ -502,5 +506,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

@@ -248,6 +248,10 @@
       <p>Travel insurance is the policy everyone thinks about at the airport and nobody thinks about at the kitchen table, which is exactly backwards. The mistakes below are the ones I see most often, and every one of them is cheaper to fix before departure than after a claim.</p>
       <h2>Mistake 1: Assuming OHIP has you covered</h2>
       <p>Ontario's health plan pays only a very small fraction of out-of-province medical costs, and outside Canada that fraction is tiny compared to actual bills. A single emergency room visit in the United States can run into the tens of thousands of dollars. Travel medical insurance exists precisely because OHIP was never designed to follow you abroad.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/travel-insurance-mistakes.jpg" alt="A traveller with a suitcase at an airport departure board" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Travel insurance is the policy everyone thinks about at the airport, and nobody at the kitchen table. Click to enlarge.</figcaption>
+</figure>
       <h2>Mistake 2: Trusting credit card coverage without reading it</h2>
       <p>Many premium credit cards include some travel coverage, which is genuinely useful, but it comes with limits: caps on trip length, maximum benefit amounts, and restrictions on who is covered. A card that covers 15-day trips does nothing for your three-week vacation. Read the certificate of insurance, not the marketing brochure.</p>
       <h2>Mistake 3: Ignoring pre-existing condition clauses</h2>
@@ -505,5 +509,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
