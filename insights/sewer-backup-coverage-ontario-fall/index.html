@@ -256,6 +256,10 @@
       <p>Every fall, Ontario gets its share of heavy downpours that can overwhelm municipal storm and sanitary systems in a matter of hours. When that happens, the water does not always stay outside. It can push back up through floor drains, toilets and basement fixtures, flooding finished basements and ruining stored belongings. Sewer backup is one of the most common and most misunderstood water claims in the province, and many homeowners only learn how their policy treats it after the damage is done.</p>
 <h2>The three water risks, and how policies treat them</h2>
 <p>Not all basement water is the same thing, and insurers draw sharp lines between the causes. There are three water risks every Ontario homeowner should know by name. Sewer backup is wastewater forced back into the home through drains and plumbing fixtures. Overland water is water that enters at or above ground level, like a creek overflowing its banks during a storm. Groundwater seepage is water pushing through foundation walls or up through the floor. A standard home policy typically covers sudden and accidental water events such as a burst interior pipe, but it usually excludes all three of these. Sewer backup and overland water are most often added back as separate endorsements, each with its own limit, while groundwater seepage is generally treated as a maintenance issue and stays excluded. That means the endorsement you carry, or do not carry, often decides the claim.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/sewer-backup-coverage-ontario-fall.jpg" alt="A basement floor drain with water backing up onto the floor" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Heavy downpours can push water back up through floor drains and basement fixtures. Click to enlarge.</figcaption>
+</figure>
 <h2>Why this matters right now</h2>
 <p>Water damage is increasingly what moves home insurance pricing. Rates.ca's 2026 Home Insuramap report, published this past June, found Ontario home premiums climbed 6.2 percent year over year to an estimated average of 2,235 dollars, and it named sewer backup and wind or hail as the biggest drivers. Sewer backup showed up as a high risk in nearly a third of Ontario postal code areas, and the report's analysts noted that neighbourhoods where multiple weather risks overlap often pay well above the provincial average. Fall is a natural moment to check what is actually on your own policy, because endorsement availability and pricing vary by insurer and by postal code, and some insurers limit certain water endorsements in higher risk areas. What your neighbour carries may not be available to you, and vice versa.</p>
 <h2>What a sewer backup endorsement typically covers</h2>
@@ -496,5 +500,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

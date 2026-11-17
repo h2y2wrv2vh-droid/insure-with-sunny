@@ -254,6 +254,10 @@
   <div class="container" style="max-width:780px">
     <div class="article-body">
       <p>Early September brought a storm outbreak across southern Ontario that many homeowners will remember for a while. After days of hot, humid weather, a line of severe storms swept from Windsor to Ottawa, delivering large hail, damaging winds, torrential rain, and confirmed tornadoes and downbursts. Toronto was among the hardest-hit areas, with ping-pong-ball-sized hail and damaging wind gusts. Severe flooding was reported in Vaughan and other communities north of the city.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/september-storms-563m-insurance-lessons.jpg" alt="A severe thunderstorm with dark clouds over a southern Ontario neighbourhood" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Early September storms caused about 563 million dollars in insured losses. Click to enlarge.</figcaption>
+</figure>
       <p>On October 8, catastrophe data provider CatIQ released its initial estimate: about C$563 million in insured losses from the early-September storms. The figure covers commercial and residential property claims, vehicle claims, and loss-adjustment expenses. For Ontario homeowners, that number is a good prompt to check your own coverage before the next system moves through.</p>
       <p>The September outbreak looks different from the July 2024 Toronto flash-flooding event, when a month's worth of rain fell in a few hours, submerged stretches of highway, and eventually produced a final insured-loss estimate of about $890 million. This time, flooding was reported, but wind and hail were the bigger drivers of losses, and average personal-property and auto claims are running below the levels seen in that earlier event.</p>
       <p>That pattern surprises many homeowners. When people picture storm damage, they usually picture rising water, but wind and hail claims are often the larger event: torn shingles, cracked siding, broken windows, toppled fences, and trees coming down on roofs and cars.</p>
@@ -498,5 +502,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

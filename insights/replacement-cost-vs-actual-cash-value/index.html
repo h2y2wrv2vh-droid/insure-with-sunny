@@ -256,6 +256,10 @@
       <p>When a water heater ruptures or a kitchen fire ruins your appliances, most homeowners expect their insurance to cover the cost of getting back what they had. But the cheque you receive often depends on two small words buried in your policy: replacement cost or actual cash value. The difference between them can be substantial, and October's fall storm season is a good reminder to check which one your policy promises before you need it.</p>
 <h2>What Replacement Cost Means</h2>
 <p>Replacement cost pays to replace a damaged or stolen item with a new one of comparable kind and quality, without subtracting for age or wear. If your eight-year-old washing machine is destroyed in a covered loss, a replacement cost settlement is meant to put you in position to buy a similar new washing machine today. Your deductible still applies, and there may be limits per item or per category, but depreciation does not reduce the payout.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/replacement-cost-vs-actual-cash-value.jpg" alt="A brand new washing machine in a bright laundry room" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Replacement cost pays for a new item, without subtracting for age or wear. Click to enlarge.</figcaption>
+</figure>
 <p>This is the settlement basis most Ontario homeowners expect when they buy a policy, and it is typically what standard home, condo, and renters policies offer for personal property. But 'typically' does a lot of work in that sentence, which is why reading your own wording matters.</p>
 <h2>What Actual Cash Value Means</h2>
 <p>Actual cash value, or ACV, pays the depreciated value of the item at the time of loss. It asks: what was this item worth used, right before the damage happened? An eight-year-old washing machine has years of wear on it, and under an ACV settlement, the insurer reduces the payout to reflect that.</p>
@@ -500,5 +504,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
