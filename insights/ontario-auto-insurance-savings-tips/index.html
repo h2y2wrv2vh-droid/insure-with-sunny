@@ -249,6 +249,10 @@
       <p>I review auto policies every day, and the same opportunities come up again and again. Here are ten of them, in no particular order.</p>
       <h2>1. Shop your renewal every year</h2>
       <p>Loyalty is rarely rewarded in auto insurance. Insurers reprice their books constantly, which means the company that was cheapest for you two years ago may not be cheapest today. As a broker I can run your profile across multiple companies at once, which beats filling out the same form on five different websites.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-auto-insurance-savings-tips.jpg" alt="A person comparing auto insurance quotes on a laptop at home" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Your premium is a price, and several rating factors are in your control. Click to enlarge.</figcaption>
+</figure>
       <h2>2. Consider a higher deductible</h2>
       <p>Your deductible is the amount you pay out of pocket before insurance kicks in. Raising it from $500 to $1,000 usually lowers your premium noticeably. The rule is simple: only raise it to an amount you could comfortably pay tomorrow if something happened today.</p>
       <h2>3. Bundle your home and auto</h2>
@@ -508,5 +512,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

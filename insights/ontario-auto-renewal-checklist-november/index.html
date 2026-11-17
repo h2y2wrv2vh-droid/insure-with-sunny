@@ -239,6 +239,10 @@
     <div class="article-body">
       <h2>Some rates are going down. Yours might not be</h2>
 <p>After years of mostly rising premiums, nine Ontario insurers now have approved average rate reductions taking effect on renewals between August and November 2026. The reductions range from 0.23 percent at Wawanesa to 5.30 percent at The Personal Insurance Company. Heartland Farm Mutual was approved for a 4.62 percent average reduction effective August 15, Aviva General for 1.64 percent effective September 1, and Certas Direct and Certas Home and Auto for 2.00 percent each effective November 28.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-auto-renewal-checklist-november.jpg" alt="A person reading an auto insurance renewal letter at a kitchen table" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Some rates are going down, but yours might not be. Click to enlarge.</figcaption>
+</figure>
 <p>Those numbers are averages across each insurer's whole Ontario business. They are not a promise that your own bill will fall by the same amount. Ontario's regulator, FSRA, says approved rate changes may not affect all customers, and your premium can also move because of your vehicle, your driving record, where you live, how much you drive, and the coverage you carry. A driver with an insurer on the rate cut list can still see a higher renewal if something in their own situation changed.</p>
 <h2>Your renewal date decides whether the cut reaches you</h2>
 <p>An approved rate change applies to renewals effective from its date. That detail matters more than the headline percentage. If your policy renews before November 28, the Certas and Personal filings typically would not be reflected in that renewal yet. If it renews after, they typically would be, though your own premium can still move for other reasons.</p>
@@ -483,5 +487,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

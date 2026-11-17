@@ -260,6 +260,10 @@
 <h2>What the New Offering Includes</h2>
 
 <p>Markel says the new sector brings together casualty, property, and selected specialist coverage within a coordinated underwriting proposition, with the goal of helping brokers place multi-line contractors and trades risks through a more streamlined process.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/markel-contractors-trades-launch-ontario.jpg" alt="Construction workers in hard hats and high-visibility vests on a job site" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Contractors are not generic commercial risks. Click to enlarge.</figcaption>
+</figure>
 
 <p>The product scope includes Commercial General Liability, Excess Liability, and property coverage, with options for contractors equipment, tools, and installation floaters. Depending on the individual risk and the exposures presented, brokers may also be able to access specialist protection for pollution and professional liability exposures through Contractors Pollution Liability and errors and omissions coverage. Additional features may include business interruption, equipment breakdown, and selected coverage enhancements.</p>
 
@@ -526,5 +530,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

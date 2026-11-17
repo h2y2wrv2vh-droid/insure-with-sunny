@@ -242,6 +242,10 @@
 <h2>Call the police when it matters</h2>
 
 <p>Call 911 if anyone is injured, if you think the other driver is impaired, if the other driver leaves the scene, or if a crime may be involved. For other crashes, the rule is simpler than most drivers think. If the total damage looks like more than $2,000, or anyone is hurt, the crash has to be reported to police. In many Ontario cities, that means going to a Collision Reporting Centre, usually within 24 hours, if police did not come to the scene. If police do attend, ask for the officer's name, badge number, and the incident number. Your insurer will ask for it later.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-after-car-accident-what-to-do.jpg" alt="A police officer speaking with a driver beside a car at a minor collision scene" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Know when a crash has to be reported to police. Click to enlarge.</figcaption>
+</figure>
 
 <h2>Swap information and gather proof</h2>
 
@@ -490,5 +494,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
