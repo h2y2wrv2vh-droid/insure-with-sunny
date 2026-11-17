@@ -256,6 +256,10 @@
       <p>If you are hosting Thanksgiving this year, here is the part of your home insurance worth understanding before the doorbell rings: your personal liability coverage. Most homeowners and tenants carry it without thinking much about it, yet a house full of guests is exactly the situation it exists for.</p>
 <h2>What Personal Liability Coverage Actually Does</h2>
 <p>Personal liability is the section of your home or tenant policy that responds when you are legally responsible for injury to someone else or damage to someone else's property. If a guest is hurt at your home and you are found liable, this coverage typically pays for their medical costs, your legal defence, and any settlement or judgment, up to your policy limit.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/thanksgiving-host-liability.jpg" alt="A family gathered around a Thanksgiving dinner table in a warm home dining room" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A house full of guests is exactly the situation liability coverage exists for. Click to enlarge.</figcaption>
+</figure>
 <p>A few things people get wrong about it. First, it is not only for dramatic accidents. The most common liability claims are ordinary: a guest slips on a wet front step or trips over an uneven walkway stone. Second, it usually applies away from home too, not just on your property. Third, the limit matters more than most people realize, which we will come back to.</p>
 <h2>The Hosting Scenarios Worth Thinking About</h2>
 <p>Thanksgiving packs a lot of liability exposure into one evening: extra people, often older relatives and small children, moving through a home after dark while October rain or early frost makes steps slippery.</p>
@@ -505,5 +509,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

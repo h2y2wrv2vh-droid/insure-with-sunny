@@ -257,6 +257,10 @@
       <p>The warning comes from Lockton Canada's first Canadian market update, published this week. Its message to business leaders was direct: challenge outdated assumptions and make sure insurance and risk strategies reflect the business you run today, not the business you insured a year ago. Here is what that means in practical terms, and what to check before your next renewal.</p>
       <h2>What changed this year</h2>
       <p>Trade tensions have escalated sharply. The United States declined on July 1 to extend the Canada-United States-Mexico Agreement for another 16-year term, moving the agreement into annual reviews. In late August, the US imposed 50 percent tariffs on $27.6 billion of Canadian goods, and Canada answered on September 8 with counter-tariffs on the same value of US imports. The report notes that autos, steel, aluminum, and lumber are among the sectors already feeling the impact.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/tariffs-insurance-values-ontario-business.jpg" alt="A warehouse with stacked shipping containers and goods" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Tariffs and inflation are changing what a loss would cost, faster than the yearly review. Click to enlarge.</figcaption>
+</figure>
       <p>Even if your business is not directly in those sectors, the ripple effects reach further than many owners expect. Replacement costs shift, margins move, and suppliers face pressure of their own. When the underlying numbers change but the policy does not, the coverage picture you bought can quietly become the wrong one.</p>
       <h2>Where the outdated numbers hurt most</h2>
       <p>Start with property and inventory. If your inventory now costs more to replace once duties are paid, the insured value on your policy may no longer reflect reality. Being underinsured at the time of a loss can reduce your recovery even when the policy limit itself looks adequate, because many commercial property policies measure you against the true replacement value. An inventory line that was accurate eighteen months ago can be materially wrong today.</p>
@@ -502,5 +506,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

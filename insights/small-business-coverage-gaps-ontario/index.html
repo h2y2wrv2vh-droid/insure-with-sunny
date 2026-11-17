@@ -257,6 +257,10 @@
 
 <h2>Leased Space Without Tenant's Legal Liability</h2>
 <p>Many Ontario businesses lease their premises. A commercial general liability policy does not always include coverage for damage the business causes to the building it occupies. That protection usually comes from tenant's legal liability coverage, which responds when the tenant is legally responsible for damage to the landlord's property, for example after a fire that starts in the leased unit. Without it, a business can face a repair bill for someone else's building on top of its own losses. Landlords often require this coverage in the lease, but leases are not always checked against the policy after signing.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/small-business-coverage-gaps-ontario.jpg" alt="A small business owner standing in a leased retail shop space" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Most coverage gaps are discovered after a loss, when a claim is denied. Click to enlarge.</figcaption>
+</figure>
 
 <h2>Staff Driving Personal Cars on Company Business</h2>
 <p>When employees run errands, visit clients, or pick up supplies in their own vehicles, the business can face liability if one of them causes a collision while on company business. Personal auto policies typically cover the driver, but they may not cover the employer, and they may exclude or limit coverage for business use. Non-owned auto coverage is designed for this exposure. It is one of the most commonly missing coverages for businesses that do not own a fleet, precisely because owners assume that no company vehicles means no auto exposure.</p>
@@ -511,5 +515,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

@@ -248,6 +248,10 @@
       <p>Starting a business takes enough courage without insurance jargon piled on top. But one lawsuit or one fire without the right coverage can end a business that took years to build. The good news: small business insurance is more straightforward than it looks once someone explains the pieces.</p>
       <h2>Commercial general liability: the foundation</h2>
       <p>General liability, often called CGL, is the starting point for most businesses. It covers third-party bodily injury and property damage arising from your operations: a client who slips in your shop, or your employee accidentally damaging a customer's property. Many commercial leases and client contracts require you to carry it, so check yours.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/small-business-insurance-basics.jpg" alt="A new small business owner opening the door to their shop in the morning" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">One lawsuit or one fire without the right coverage can end a business. Click to enlarge.</figcaption>
+</figure>
       <h2>Commercial property: your stuff and your space</h2>
       <p>If you own or lease a space, commercial property coverage protects the building (if you own it), your equipment, inventory, furniture and signage against fire, theft, water damage and other insured perils. Even businesses that lease should insure their contents and any improvements they made to the space.</p>
       <h2>Business interruption: the forgotten coverage</h2>
@@ -504,5 +508,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
