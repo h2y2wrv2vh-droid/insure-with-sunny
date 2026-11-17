@@ -256,6 +256,10 @@
       <p>October is the last comfortable month of the year to take care of your house. Once the cold settles in, the ladder work, the yard work and the furnace work all get harder and more expensive. A few October weekends spent on basic maintenance are the cheapest insurance you can buy, and your actual insurance policy will back you up on that. Home insurance is written to cover sudden and accidental loss, not damage that builds up because the roof was already failing or the eavestroughs were packed with leaves. When an adjuster looks at a claim, one of the first questions is whether the homeowner did the reasonable upkeep a homeowner is expected to do.</p>
 <h2>Water finds every weak spot first</h2>
 <p>Almost every major fall and winter home insurance claim starts with water getting where it does not belong. Start with the eavestroughs. Clean them out and make sure downspouts push water at least a few feet away from the foundation, not straight down beside it. Clogged gutters overflow at the fascia board, water runs behind the siding, and by February you have ice, rot and a leak that came out of nowhere. It did not come out of nowhere.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/fall-home-maintenance-insurance-checklist.jpg" alt="A homeowner cleaning leaves from a house gutter on a ladder in autumn" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A few October weekends of maintenance protect your home all winter. Click to enlarge.</figcaption>
+</figure>
 <p>Walk around the house during the next heavy rain and watch where water goes. Soil should slope away from the foundation, not toward it. If your basement has a sump pump, test it now, not when the spring melt arrives. And while you are at it, know whether your policy includes overland water and sewer backup endorsements. After a summer of flooding across Ontario, including the September storms that left parts of the GTA under water, the homes that recovered fastest were the ones whose owners had already confirmed those coverages before they needed them.</p>
 <h2>Check the roof before it is covered in snow</h2>
 <p>You do not need to walk your roof. Use binoculars from the driveway. Look for shingles that are curled, cracked or missing, and check the flashing around chimneys and vents. Inside the attic, look for daylight where it should not be and water stains on the underside of the roof deck. A slow roof leak found in October is a repair job. The same leak found in January becomes a claim, and possibly a complicated one if the insurer can show the roof was already in poor condition. Most policies expect roofs to be maintained in good repair, and a roof that is visibly at the end of its life is one of the most common reasons claims get reduced or denied.</p>
@@ -509,5 +513,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

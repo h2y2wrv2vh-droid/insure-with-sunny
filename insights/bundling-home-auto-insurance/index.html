@@ -248,6 +248,10 @@
       <p>Ask any group of homeowners whether bundling home and auto insurance is a good idea and most will say yes without hesitation. The industry has marketed the bundle hard for years. And to be fair, it is often a good deal. But "often" is not "always," and I have seen plenty of bundled clients who were overpaying on one half of the package without knowing it.</p>
       <h2>Why bundling is so popular</h2>
       <p>The appeal is real. Insurers typically offer a multi-policy discount when you place two or more policies with them, which lowers the total bill. You get one renewal date, one company to call, and one broker with the full picture. For busy households, that simplicity has genuine value beyond the dollars.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/bundling-home-auto-insurance.jpg" alt="A suburban Ontario home with a car parked in the driveway" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Home and auto under one roof can save money, but not always. Click to enlarge.</figcaption>
+</figure>
       <h2>When bundling wins</h2>
       <p>Bundling tends to win when one insurer is competitive on both lines for your specific profile. A clean driving record plus a well-maintained, claims-free home is the classic bundle-friendly combination. It also wins on convenience: if the price difference between bundled and split is small, most people sensibly choose the simpler option.</p>
       <h2>When splitting wins</h2>
@@ -503,5 +507,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

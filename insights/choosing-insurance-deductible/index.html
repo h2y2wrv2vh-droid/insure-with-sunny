@@ -248,6 +248,10 @@
       <p>Every insurance policy has a deductible, and most people chose theirs years ago without much thought, then never revisited it. That is a shame, because the deductible is one of the few parts of your policy you control directly, and adjusting it is often the quickest way to a lower premium.</p>
       <h2>What a deductible actually is</h2>
       <p>Simply put, it is your share of a claim. If you have a $500 deductible and a $5,000 covered loss, you pay the first $500 and the insurer pays the remaining $4,500. It exists to keep small, everyday losses off the insurer's books and to give you some skin in the game. Every policy has one, and you chose the amount.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/choosing-insurance-deductible.jpg" alt="A person reviewing an insurance policy document at a kitchen table with a calculator" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Your deductible is the part of a claim you pay yourself. Click to enlarge.</figcaption>
+</figure>
       <h2>The core tradeoff</h2>
       <p>Higher deductible, lower premium. Lower deductible, higher premium. That is the whole equation. When you raise your deductible, you are telling the insurer you will handle smaller losses yourself, and they charge you less for the privilege. The savings are real and immediate, starting at your next renewal or endorsement.</p>
       <h2>The emergency fund rule</h2>
@@ -502,5 +506,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

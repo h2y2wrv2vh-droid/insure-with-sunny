@@ -248,6 +248,10 @@
       <p>Even a minor collision floods you with adrenaline, and adrenaline makes people forgetful. That is why it helps to know the steps before you need them. Print this mentally, because one day you might be standing on the shoulder of the 401 trying to remember what comes first.</p>
       <h2>1. Safety first, everything else second</h2>
       <p>Check yourself and your passengers for injuries. If anyone is hurt, call 911 immediately. If the vehicles are drivable and it is safe, move them out of traffic and turn on your hazard lights. Your health and everyone else's comes before bumpers and paperwork, always.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/after-car-accident-ontario.jpg" alt="A driver standing beside a car on the shoulder of a highway after a minor collision, hazard lights on" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">After a collision, safety comes before paperwork. Click to enlarge.</figcaption>
+</figure>
       <h2>2. Know when police need to be involved</h2>
       <p>In Ontario, you must report a collision to police if anyone is injured, if there is significant property damage, or if a criminal act like impaired driving is involved. For collisions with combined damage over $2,000 and no injuries, you generally report to a Collision Reporting Centre instead of calling 911. When in doubt, call; they will direct you.</p>
       <h2>3. Exchange information</h2>
@@ -506,5 +510,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
