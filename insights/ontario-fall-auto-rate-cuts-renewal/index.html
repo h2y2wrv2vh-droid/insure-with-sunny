@@ -263,6 +263,10 @@
     <div class="article-body">
       <h2>A rare piece of good news in auto insurance</h2>
 <p>After years of steady increases, Ontario drivers are finally seeing rate cuts from the regulator. Ontario's insurance regulator, the Financial Services Regulatory Authority of Ontario (FSRA), has approved average rate decreases for a dozen private-passenger auto insurance filings covering renewals this fall. The list comes from reporting by Carsaga for drivingtest.ca, published October 2, 2026, with the filings verified directly against FSRA's public Auto Rate Approvals database.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-fall-auto-rate-cuts-renewal.jpg" alt="A driver opening an auto insurance renewal envelope in a car" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">After years of increases, some Ontario drivers are finally seeing rate cuts. Click to enlarge.</figcaption>
+</figure>
 <p>The cuts do not erase the increases behind them, but if your renewal lands in the fall window, you should know which side of the line your insurer is on.</p>
 <h2>Which insurers are cutting, and by how much</h2>
 <p>The approved decreases range from modest to meaningful. The Personal Insurance Company leads with an average decrease of 5.30% for renewals effective November 28, 2026. Farm Mutual Re, filing for Ontario mutual insurers, is next at 4.89% for December 1 renewals, followed by Heartland Farm Mutual at 4.62% for renewals effective August 15. Certas Direct and Certas Home and Auto each filed 2.00% for November 28 renewals. Aviva General Insurance filed 1.64% effective September 1, Allstate Insurance Company of Canada 1.64% effective September 15, Pembridge 1.45% on the same date, Definity 1.31% effective September 1, and CAA Insurance 0.12% effective December 1. Two further decreases are scheduled to take effect January 1, 2027.</p>
@@ -511,5 +515,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
