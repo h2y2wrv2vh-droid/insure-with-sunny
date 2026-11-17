@@ -255,6 +255,10 @@
     <div class="article-body">
       <h2>What umbrella liability insurance is</h2>
 <p>Most Ontario home and auto policies include liability coverage, typically $1 million or $2 million. That limit sounds generous until a serious claim arrives. A multi-vehicle collision with lasting injuries, a guest hurt badly on your property, or a lawsuit that drags on for years can produce a settlement or court award well above what your base policy pays. Umbrella liability insurance is an extra layer of protection that sits on top of your existing home and auto policies and steps in once those underlying limits are exhausted.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-umbrella-liability-insurance-explained.jpg" alt="A large open umbrella sheltering a house and a car from rain" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">An umbrella policy is a safety net for the worst-case claim. Click to enlarge.</figcaption>
+</figure>
 <p>Think of it as a safety net for the worst-case claim, not for everyday incidents. Your home or auto policy responds first, up to its own liability limit. If the claim is larger than that limit, the umbrella policy can cover the remaining amount, up to its own limit. Umbrella policies in Ontario are commonly available in $1 million increments, and the right amount depends on your assets, your income, and the risks in your daily life.</p>
 <h2>How it works with your existing policies</h2>
 <p>An umbrella policy does not replace your home or auto insurance. It requires you to carry certain minimum liability limits on those underlying policies, often called required underlying limits. If your underlying limits fall below what the umbrella policy requires, a gap can open up, and part of a claim could fall to you personally. This is one reason it is worth reviewing all of your policies together at renewal, rather than treating the umbrella as a standalone purchase.</p>
@@ -499,5 +503,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

@@ -257,6 +257,10 @@
       <p>A lower average is good news, but the word average is doing a lot of work in this announcement. Your actual rate depends on your industry classification and your own claims experience, and those two factors decide whether your bill drops, holds steady, or rises. Before you pencil in the savings, here is what changed, what to check when your statement arrives, and how to make the savings stick.</p>
       <h2>What actually changed</h2>
       <p>The headline numbers are straightforward. The average premium rate falls from $1.23 to $1.18 per $100 of insurable earnings on January 1, 2027. The WSIB says more than 80 per cent of businesses that pay premiums will get a reduction, and it points to improved return-to-work results and lower administrative costs as the reason the board can charge less. The provincial government is presenting the cut as part of its tariff-relief package for businesses, alongside tax relief and financing programs announced during Small Business Week.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-wsib-premium-rate-cut-2027.jpg" alt="An Ontario employer and workers in a warehouse wearing safety vests and hard hats" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">The WSIB is lowering its average premium rate for 2027, but averages hide the details. Click to enlarge.</figcaption>
+</figure>
       <p>For context, the average rate stood at $2.35 in 2018, so it has roughly halved in eight years, and Ontario's average now sits nearly 30 per cent below the national average, according to the WSIB. But what matters most to you is your individual rate, not the provincial average.</p>
       <h2>Why your rate may not follow the average</h2>
       <p>WSIB premiums are not one flat rate. Each employer sits in an industry class with its own class rate, and then the individual premium is adjusted for the employer's own claims history. That means the 5-cent average drop is the starting point, not the finish line.</p>
@@ -503,5 +507,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

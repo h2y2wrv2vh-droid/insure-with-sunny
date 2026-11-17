@@ -256,6 +256,10 @@
       <p>That moment is exciting and a little nerve-wracking: your teenager walks in with a G2 licence and the keys suddenly matter more than ever. What a lot of Ontario parents do not realize is that the moment a licensed teen lives in your household and has access to your car, your auto insurance picture changes. Here is how it works in Ontario, and the steps that keep you protected and your costs under control.</p>
 <p><strong>Occasional drivers must be listed on the policy</strong></p>
 <p>In Ontario, anyone who lives in your household and holds a licence with regular access to a vehicle is generally expected to be listed on that vehicle's insurance policy. That includes a teen with a G2, even a teen who "only drives once in a while." The distinction insurers draw is between occasional and principal drivers:</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-teen-driver-g2-auto-insurance.jpg" alt="A parent handing car keys to a teenager in a driveway beside a family car" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A licensed teen in your household changes your auto insurance picture. Click to enlarge.</figcaption>
+</figure>
 <ul>
 <li><strong>A principal driver</strong> is the person who drives the vehicle most often. If your teen gets their own car, they are usually the principal driver on it.</li>
 <li><strong>An occasional driver</strong> is someone who drives the car sometimes but is not the main driver. A teen driving the family car on weekends is the classic example.</li>
@@ -510,5 +514,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
