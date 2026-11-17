@@ -257,6 +257,10 @@
 <p>A condominium corporation carries insurance on the building. You carry insurance on your unit, your belongings, and your liability. Those two policies are meant to fit together. When owners assume the building policy does the whole job, the gaps usually show up after a claim.</p>
 <h2>What the Building&#x27;s Master Policy Typically Covers</h2>
 <p>Under Ontario condominium law, the corporation is generally required to insure the common elements and the standard units against major perils such as fire and water damage from insured causes. Common elements include the structure, hallways, lobbies, elevators, roofs, and parking garages. The standard unit is the unit as it was originally built, before any owner upgrades.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-condo-insurance-what-master-policy-covers.jpg" alt="A modern Ontario condominium building exterior with balconies" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">The building is insured, but that does not cover your whole unit. Click to enlarge.</figcaption>
+</figure>
 <p>Think of the master policy as protection for the building as a whole. If a fire damages the structure, or a burst pipe in a common area damages several units, the corporation&#x27;s policy is typically the one that responds.</p>
 <p>What the master policy does not do is insure your life inside the unit. It does not cover your furniture, your electronics, your clothes, or the upgrades you paid for. It does not cover your personal liability, and it does not pay your hotel bill if a covered loss makes your unit unlivable. Those are the jobs of your own condo owner policy.</p>
 <h2>What Your Own Condo Policy Is For</h2>
@@ -512,5 +516,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

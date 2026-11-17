@@ -242,6 +242,10 @@
 <h2>What DCPD actually is</h2>
 
 <p>DCPD stands for Direct Compensation for Property Damage. It is a mandatory part of every standard auto policy in Ontario, which means it is already on your policy whether you asked for it or not. Here is the plain version. When another driver is at fault for a crash and damages your car, your own insurer pays to fix it, instead of you having to chase the other driver's insurer. The two insurers sort out the money between themselves afterwards. You deal with one company, yours, and that is the whole point.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-dcpd-direct-compensation-explained.jpg" alt="A car stopped at a red light after being rear-ended by another car" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">When another driver is at fault, your own insurer still pays to fix your car. Click to enlarge.</figcaption>
+</figure>
 
 <p>This is different from how things work in some other places, where you claim against the at-fault driver's insurer directly. In Ontario, your insurer handles your claim and then recovers what it paid from the other driver's insurer behind the scenes.</p>
 
@@ -493,5 +497,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

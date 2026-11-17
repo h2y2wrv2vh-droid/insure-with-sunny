@@ -242,6 +242,10 @@
 <h2>What happened</h2>
 
 <p>On November 10, Ontario's insurance regulator, the Financial Services Regulatory Authority of Ontario (FSRA), warned drivers about a website that was selling fake auto insurance pink slips. The site used the Definity Insurance name and charged a flat fee for the cards. FSRA says the site was not licensed to sell insurance in Ontario and was not connected to the real Definity Insurance Company. The website has since been taken down.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-fake-pink-slip-warning-auto-insurance.jpg" alt="A hand holding an auto insurance pink slip card over a car dashboard" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A card that looks real is not the same as real coverage. Click to enlarge.</figcaption>
+</figure>
 
 <h2>Why a fake pink slip is a real problem</h2>
 
@@ -488,5 +492,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

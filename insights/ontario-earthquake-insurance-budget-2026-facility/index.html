@@ -255,6 +255,10 @@
     <div class="article-body">
       <h2>What Budget 2026 announced</h2>
 <p>On November 5, 2026, the federal government released Budget 2026, titled "Masters of Our Destiny." One of the most consequential commitments for the insurance industry was the creation of the Canadian Earthquake Insurance Facility, a government-backed financial backstop for the property and casualty insurance sector following a catastrophic earthquake.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-earthquake-insurance-budget-2026-facility.jpg" alt="A house with a cracked foundation wall after an earthquake" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A major earthquake could leave insurers facing losses far beyond normal claims. Click to enlarge.</figcaption>
+</figure>
 <p>The facility would provide emergency funding of up to $50 billion to insurers after an extreme earthquake. Legislation to establish it will be introduced in Parliament, and both the Insurance Bureau of Canada and the Insurance Brokers Association of Canada are set to take part in the design and implementation discussions as the process advances.</p>
 <p>The industry has pressed Ottawa for one since at least 2016, and the 2025 budget committed to consultations. The 2026 budget moves the file from consultation to legislation.</p>
 <h2>Why the industry wanted a backstop</h2>
@@ -503,5 +507,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
