@@ -249,6 +249,10 @@
       <p>A home policy usually has two parts that matter on Halloween night. Liability coverage responds when someone is hurt on your property or when you are found legally responsible for damage to someone else's property. Property coverage responds when your own home or belongings are damaged by a covered cause, such as fire or vandalism. Details sit in your own wording, so treat this article as a guide to the usual shape of coverage, not as a promise about any one policy.</p>
       <h2>If a visitor is hurt on your property</h2>
       <p>The most common Halloween liability worry is a fall. A child trips on an uneven step, a parent slips on a wet walkway, or a visitor catches a foot on an extension cord stretched across the porch. If someone is injured and you are found legally responsible, liability coverage typically responds to the claim, including legal defence costs, up to your policy limit.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/halloween-trick-or-treaters-home-insurance-ontario.jpg" alt="Children in Halloween costumes trick-or-treating at a decorated house front door at dusk" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Halloween brings more foot traffic to your front door than any other night. Click to enlarge.</figcaption>
+</figure>
       <p>That phrase, legally responsible, does a lot of work. A home policy does not automatically pay every injury that happens on your property. It responds when liability is established, which usually turns on whether reasonable care was taken. That is why the practical steps matter as much as the coverage itself. Clear the walkway of toys, hoses, and loose decorations. Fix or mark an uneven step. Keep the porch and path well lit, and keep cords out of walking paths. If rain is in the forecast, remember that wet leaves and a slick step can turn a small hazard into a fall. You cannot control what a visitor wears, but you can control your side of the visit: a clear path, good lighting, and no surprise obstacles between the sidewalk and the door.</p>
       <h2>Decorations, candles, and fire risk</h2>
       <p>Halloween decorations are often flammable, electrical, or both, and that combination deserves attention. Dried corn stalks, hay bales, paper decorations, and fabric draped near a heat source can catch fire quickly. Real candles inside carved pumpkins look traditional, and they are also an open flame sitting at child height on a busy porch.</p>
@@ -493,5 +497,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

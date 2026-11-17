@@ -265,6 +265,10 @@
       <p>Two thousand dollars is real help with cleanup costs, ruined furniture and emergency repairs. It is not a rebuild. A single flooded basement in Ontario commonly costs $20,000 to $40,000 or more to restore once you count flooring, drywall, electrical and mould remediation. The gap between a grant and the actual bill is exactly where insurance is supposed to step in.</p>
       <h2>The coverage gap most homeowners do not know they have</h2>
       <p>Here is the part that surprises people. A standard home insurance policy typically covers wind and hail damage, but overland flooding, water that enters your home from outside, is usually an optional add-on. Sewer backup, water forced up through drains when storm systems overload, needs its own endorsement too. After the September 2 storm that left cars submerged on the Don Valley Parkway, the advice from the industry was blunt: without those two add-ons, many homeowners ended up paying out of pocket.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/hamilton-2000-flood-grant.jpg" alt="A flooded residential basement with water covering the floor" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A flooded basement can cost far more than a grant covers. Click to enlarge.</figcaption>
+</figure>
       <p>Hamilton is not alone in dealing with this. St. Catharines just opened a flood impact registry to support its push for provincial disaster assistance after its own summer flooding. And Ontario's Disaster Recovery Assistance program states plainly that it does not replace insurance. Applicants are expected to go through their private insurer first.</p>
       <h2>Claims are slow right now, which makes preparation matter more</h2>
       <p>There is another wrinkle. With adjusters and restoration crews stretched thin by the September storms, claims are taking longer than usual to resolve across the GTA. When the system is backlogged, the cheapest claim is the one you never have to file, and the fastest payout goes to the homeowner with documentation ready.</p>
@@ -517,5 +521,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

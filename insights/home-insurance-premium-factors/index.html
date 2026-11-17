@@ -248,6 +248,10 @@
       <p>When clients ask me why their home insurance costs what it does, they usually expect one big reason. The truth is less dramatic: your premium is built from a long list of smaller factors, each nudging the price up or down. Understanding them is the first step to paying a fair price.</p>
       <h2>Rebuild cost, not market value</h2>
       <p>This is the most misunderstood part of home insurance. Your premium is based on what it would cost to rebuild your home from the foundation up, including materials, labour and debris removal. That number has little to do with what your house would sell for. In hot markets the sale price can be double the rebuild cost, or in small towns it can be less. Insurers care about construction cost, period.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/home-insurance-premium-factors.jpg" alt="A house under construction with exposed framing" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Your premium is based on rebuild cost, not market value. Click to enlarge.</figcaption>
+</figure>
       <h2>Location matters more than you think</h2>
       <p>Insurers look at how close you are to a fire hydrant and a fire station, because response time affects how bad a fire gets. They also look at the claims history of your neighbourhood. Areas with frequent water claims or break-ins tend to cost more to insure. You cannot change your postal code easily, but it helps to know it is part of the math.</p>
       <h2>Age and condition of the big four</h2>
@@ -504,5 +508,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
