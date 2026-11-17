@@ -239,6 +239,10 @@
     <div class="article-body">
       <h2>What this means for you</h2>
 <p>If you run a restaurant in Ontario, your business faces risks most others never think about: hot kitchens, busy dining rooms, and staff working late. The right insurance package covers the everyday accidents and the rare bad day, so one incident does not close your doors for good.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-restaurant-insurance-explained.jpg" alt="A busy restaurant kitchen with a chef cooking over a hot stove" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Hot kitchens, busy dining rooms, and late nights bring risks most businesses never face. Click to enlarge.</figcaption>
+</figure>
 <h2>A restaurant policy is usually a package, not one coverage</h2>
 <p>Most restaurants do not buy one single policy. They buy a package that bundles the main protections together, then add the extras that fit how they actually operate. The package typically has three parts at its core: cover for your property, cover for your liability, and cover for lost income if you have to close after a covered loss.</p>
 <p>That last part matters for a restaurant more than for most businesses. If a kitchen fire shuts you down for a month, you lose the food sales you would have made every day. This kind of cover typically helps with the income you lose and some of the ongoing costs while you rebuild.</p>
@@ -486,5 +490,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

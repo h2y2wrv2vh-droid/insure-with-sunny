@@ -257,6 +257,10 @@
 <p>It is the least exciting part of snowbird season and one of the most consequential. A single uninsured hospital stay south of the border can cost more than a decade of winter trips combined. The good news is that the right policy is straightforward to arrange, as long as you understand a few details that catch Ontario snowbirds off guard every year.</p>
 <h2>Your OHIP coverage does not travel with you</h2>
 <p>Many snowbirds assume Ontario's health coverage follows them to Florida. It does not, at least not in any way that helps with real bills. OHIP's coverage for emergency care outside Canada is extremely limited and pays at Ontario rates, which are a small fraction of what American hospitals charge. The gap between what OHIP would reimburse and what you would actually owe is the entire reason snowbird travel medical insurance exists.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-snowbird-travel-medical-insurance.jpg" alt="A retired couple loading suitcases into a car in a snowy Ontario driveway" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">Your OHIP coverage does not travel with you. Click to enlarge.</figcaption>
+</figure>
 <p>Think of it this way: your travel medical policy is not a nice-to-have add-on. For a multi-month stay in the United States, it is effectively your health insurance for the winter. Buying it is not about being cautious; it is about being covered at all.</p>
 <h2>Pre-existing conditions and the stability clause</h2>
 <p>This is the detail that causes the most claim problems, so it deserves your full attention. Most travel medical policies contain a stability clause for pre-existing conditions: your condition, and the treatment for it, must have been stable for a defined period before your departure date for related claims to be covered.</p>
@@ -512,5 +516,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
