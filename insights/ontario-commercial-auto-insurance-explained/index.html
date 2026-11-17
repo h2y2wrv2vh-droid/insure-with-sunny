@@ -255,6 +255,10 @@
     <div class="article-body">
       <h2>When a personal policy stops being enough</h2>
       <p>Many Ontario business owners start with a personal auto policy and a vehicle that does double duty: school runs in the morning, tools and a trailer to a job site in the afternoon. That arrangement can work for a while, but it has a limit. A personal auto policy is priced and worded for personal use, and most restrict or exclude regular business use. If a claim happens while the vehicle is being used for business, the insurer may reduce the claim, deny it, or cancel the policy, depending on the wording and the facts.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-commercial-auto-insurance-explained.jpg" alt="A white work van loaded with tools and equipment at a job site" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">A personal auto policy is priced for personal use, not daily business driving. Click to enlarge.</figcaption>
+</figure>
       <p>The line is not always obvious. Driving to a single client meeting now and then is usually still personal use. Driving to job sites every day, carrying equipment or materials, towing a work trailer, making deliveries, or having employees drive the vehicle is a different story. The question an insurer asks is how the vehicle is actually used, how often, and by whom.</p>
       <h2>What commercial auto insurance typically covers</h2>
       <p>Commercial auto insurance in Ontario is built on the same foundation as a personal policy, but designed for vehicles used in a business. The core coverages look familiar: third party liability for damage or injury you cause to someone else, accident benefits for medical and rehabilitation costs after a collision, collision for damage to your own vehicle, and comprehensive for theft, vandalism, fire, and similar losses.</p>
@@ -503,5 +507,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>

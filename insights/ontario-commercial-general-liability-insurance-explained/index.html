@@ -256,6 +256,10 @@
       <p>If you run a business in Ontario, commercial general liability insurance, often shortened to CGL, is usually the first business policy people ask about. It is also one of the most misunderstood. Many owners assume it covers almost any problem that touches their business, but it covers a specific set of liability risks and leaves other risks to different policies. Knowing where that line sits can prevent a difficult surprise after an incident.</p>
 <h2>What CGL is, in plain terms</h2>
 <p>A CGL policy is designed to respond when your business is held legally responsible for injury to another person or damage to another person's property, in connection with your operations. The key word is liability. The policy is not there to pay for your own property, your own mistakes in professional advice, or injuries to your own employees. It is there for claims made against you by someone else, such as a customer, a visitor, or a member of the public, when your business is blamed for the harm.</p>
+<figure style="float:right;width:420px;max-width:55%;margin:6px 0 16px 24px;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)" title="Click to enlarge">
+  <img src="/images/insights/ontario-commercial-general-liability-insurance-explained.jpg" alt="A small business owner shaking hands with a client in a modern office" style="width:100%;height:auto;border-radius:12px;display:block">
+  <figcaption style="font-size:.85rem;color:#5a6b7d;margin-top:8px">CGL responds when your business is held responsible for injury or damage to others. Click to enlarge.</figcaption>
+</figure>
 <h2>What it typically covers</h2>
 <p>The most common part of CGL is coverage for bodily injury and property damage to third parties. If a customer slips on a wet floor in your shop and is hurt, or if work you do accidentally damages a client's property, a CGL policy is typically the first place to look. It usually includes the cost of defending the claim, as well as damages the business is legally required to pay, up to the policy limit and subject to the wording.</p>
 <p>Many CGL policies also include coverage for personal injury and advertising injury. Despite the name, this is not about injuries to the body. It usually covers claims such as libel or slander in your advertising, or claims that your business used someone else's advertising idea. It is narrower than many owners expect, so ask your broker what it actually includes.</p>
@@ -503,5 +507,15 @@
 <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 <link rel="stylesheet" href="/chat-widget.css">
 <script src="/chat-widget.js" defer></script>
+
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px" onclick="if(event.target===this)closeLightbox()">
+  <span onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1">&times;</span>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:8px">
+</div>
+<script>
+function openLightbox(src){var lb=document.getElementById('lightbox');document.getElementById('lightbox-img').src=src;lb.style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){var lb=document.getElementById('lightbox');lb.style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
