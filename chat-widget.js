@@ -93,7 +93,8 @@ function handleCapture(text){
 }
 function finishCapture(ok){
   untype();capture=null;
-  if(ok)botSay(IN_HOURS?'Thanks! Your request is in and Sunny will be in touch shortly. Prefer to talk now? Call '+PHONE+'.':'Thanks! Your request is in. Sunny will get back to you next business day. For anything urgent, call '+PHONE+'.');
+  if(ok){botSay(IN_HOURS?'Thanks! Your request is in and Sunny will be in touch shortly. Prefer to talk now? Call '+PHONE+'.':'Thanks! Your request is in. Sunny will get back to you next business day. For anything urgent, call '+PHONE+'.');
+  if (typeof gtag === 'function') { gtag('event', 'generate_lead'); }}
   else botSay('Something glitched on my end. Please call '+PHONE+' and Sunny will help you directly.');
   setQuick([{label:'Call '+PHONE,action:'call'},{label:'Ask another question',action:'ask'}]);
 }
